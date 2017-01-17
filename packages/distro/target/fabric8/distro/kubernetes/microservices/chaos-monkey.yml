@@ -1,0 +1,155 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      fabric8.io/git-commit: 692764ddc65dfe31586a49a466060b5bf223f6f5
+      fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-devops/master/chaos-monkey/src/main/fabric8/icon.png
+      fabric8.io/git-branch: release-v2.2.303
+    labels:
+      provider: fabric8
+      project: chaos-monkey
+      version: 2.2.303
+      group: io.fabric8.devops.apps
+    name: chaos-monkey
+  spec:
+    ports:
+    - name: jolokia
+      port: 8778
+      protocol: TCP
+      targetPort: 8778
+    selector:
+      project: chaos-monkey
+      provider: fabric8
+      group: io.fabric8.devops.apps
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    annotations:
+      fabric8.chaos-monkey/summary: Kills random pods for chaos fun!
+      description: Randomly kills pods to help check your environment can withstand failures
+      fabric8.chaos-monkey/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-devops/master/chaos-monkey/src/main/fabric8/icon.png
+      fabric8.io/json-schema: |-
+        {
+          "type" : "object",
+          "properties" : {
+            "CHAOS_MONKEY_INCLUDES" : {
+              "type" : "string",
+              "description" : "Comma separated list of patterns for pods which should be considered for deletion",
+              "default" : "*"
+            },
+            "CHAOS_MONKEY_EXCLUDES" : {
+              "type" : "string",
+              "description" : "Comma separated list of patterns for pods which should not be deleted",
+              "default" : "letschat*,gogs*"
+            },
+            "CHAOS_MONKEY_ROOM" : {
+              "type" : "string",
+              "description" : "The chat room to talk to",
+              "default" : "#fabric8_${namespace}"
+            },
+            "CHAOS_MONKEY_KILL_FREQUENCY_SECONDS" : {
+              "type" : "string",
+              "description" : "The number of seconds between a kill",
+              "default" : "60"
+            }
+          }
+        }
+    labels:
+      provider: fabric8
+      project: chaos-monkey
+      version: 2.2.303
+      group: io.fabric8.devops.apps
+    name: chaos-monkey
+  data:
+    chaos-monkey-kill-frequency-seconds: "60"
+    chaos-monkey-excludes: letschat*,gogs*
+    chaos-monkey-room: '#fabric8_${namespace}'
+    chaos-monkey-includes: '*'
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    annotations:
+      fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-devops/master/chaos-monkey/src/main/fabric8/icon.png
+      fabric8.io/git-commit: 692764ddc65dfe31586a49a466060b5bf223f6f5
+      fabric8.io/git-branch: release-v2.2.303
+      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=chaos-monkey&var-version=2.2.303
+    labels:
+      provider: fabric8
+      project: chaos-monkey
+      version: 2.2.303
+      group: io.fabric8.devops.apps
+    name: chaos-monkey
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        provider: fabric8
+        project: chaos-monkey
+        group: io.fabric8.devops.apps
+    template:
+      metadata:
+        annotations:
+          fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-devops/master/chaos-monkey/src/main/fabric8/icon.png
+          fabric8.io/git-commit: 692764ddc65dfe31586a49a466060b5bf223f6f5
+          fabric8.io/git-branch: release-v2.2.303
+          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=chaos-monkey&var-version=2.2.303
+        labels:
+          provider: fabric8
+          project: chaos-monkey
+          version: 2.2.303
+          group: io.fabric8.devops.apps
+      spec:
+        containers:
+        - env:
+          - name: CHAOS_MONKEY_INCLUDES
+            valueFrom:
+              configMapKeyRef:
+                key: chaos-monkey-includes
+                name: chaos-monkey
+          - name: CHAOS_MONKEY_EXCLUDES
+            valueFrom:
+              configMapKeyRef:
+                key: chaos-monkey-excludes
+                name: chaos-monkey
+          - name: CHAOS_MONKEY_ROOM
+            valueFrom:
+              configMapKeyRef:
+                key: chaos-monkey-room
+                name: chaos-monkey
+          - name: CHAOS_MONKEY_KILL_FREQUENCY_SECONDS
+            valueFrom:
+              configMapKeyRef:
+                key: chaos-monkey-kill-frequency-seconds
+                name: chaos-monkey
+          - name: KUBERNETES_MASTER
+            value: https://kubernetes.default.svc
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: HUBOT_USERNAME
+            value: ""
+          - name: HUBOT_BUILD_ROOM
+            value: '#fabric8_${namespace}'
+          - name: HUBOT_PASSWORD
+            value: ""
+          image: fabric8/chaos-monkey:2.2.303
+          imagePullPolicy: IfNotPresent
+          name: chaos-monkey
+          ports:
+          - containerPort: 8778
+            name: jolokia
+          resources:
+            limits:
+              cpu: "0"
+              memory: "0"
+            requests:
+              cpu: "0"
+              memory: "0"
+          securityContext:
+            privileged: false
+        serviceAccountName: fabric8

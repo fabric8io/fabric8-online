@@ -1,0 +1,68 @@
+#!/usr/bin/groovy
+@Library('github.com/fabric8io/fabric8-pipeline-library@master')
+
+// lets build things locally
+
+def utils = new io.fabric8.Utils()
+def flow = new io.fabric8.Fabric8Commands()
+
+def label = "buildpod.${env.JOB_NAME}.${env.BUILD_NUMBER}".replace('-', '_').replace('/', '_')
+
+def testNamespace = "systest-fabric8"
+//def testNamespace = "test-${env.JOB_NAME}-${env.BUILD_NUMBER}".replace('_', '-').replace('/', '-')
+def fromNamespace = utils.getNamespace()
+
+podTemplate(label: label, serviceAccount: 'jenkins', containers: [
+        [name: 'maven', image: 'fabric8/maven-builder', command: 'cat', ttyEnabled: true, envVars: [
+                [key: 'TERM', value: 'dumb'], // this removes colour from gofabric8
+                [key: 'MAVEN_OPTS', value: '-Duser.home=/home/jenkins/'],
+                [key: 'DOCKER_CONFIG', value: '/home/jenkins/.docker/'],
+                [key: 'KUBERNETES_MASTER', value: 'kubernetes.default']]],
+        [name: 'jnlp', image: 'iocanel/jenkins-jnlp-client:latest', command:'/usr/local/bin/start.sh', args: '${computer.jnlpmac} ${computer.name}', ttyEnabled: false,
+                envVars: [[key: 'DOCKER_HOST', value: 'unix:/var/run/docker.sock']]]],
+        volumes: [
+                [$class: 'PersistentVolumeClaim', mountPath: '/home/jenkins/.mvnrepository', claimName: 'jenkins-mvn-local-repo'],
+                [$class: 'SecretVolume', mountPath: '/home/jenkins/.m2/', secretName: 'jenkins-maven-settings'],
+                [$class: 'SecretVolume', mountPath: '/home/jenkins/.docker', secretName: 'jenkins-docker-cfg'],
+                [$class: 'HostPathVolume', mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock']
+        ]) {
+  node(label) {
+    git 'https://github.com/fabric8io/fabric8-online.git'
+
+    echo 'NOTE: running pipelines for the first time will take longer as build and base docker images are pulled onto the node'
+    container(name: 'maven') {
+
+
+      flow.deleteNamespace(testNamespace)
+
+      stage 'Install gofabric8'
+      sh """
+cd packages
+mvn -U fabric8:install
+cd ..
+"""
+
+      stage "Setup namespace"
+      sh "~/.fabric8/bin/gofabric8 copy-endpoints -f=${fromNamespace} -t=${testNamespace} glusterfs-cluster"
+
+      stage 'Build master'
+      sh "mvn -U clean install"
+
+      stage 'Rollout local build'
+      sh "~/.fabric8/bin/gofabric8 start --package=packages/fabric8-team/target/classes/META-INF/fabric8/kubernetes.yml --open-console=false --namespace=${testNamespace}"
+
+      stage 'Wait for rollout'
+      sh "~/.fabric8/bin/gofabric8 wait-for --all --timeout=60m --namespace=${testNamespace}"
+
+      echo "Deployed master of fabric8-online into namespace: ${testNamespace}"
+
+      stage 'Integration Test'
+      sh """
+git clone https://github.com/fabric8io/fabric8-forge.git
+cd fabric8-forge
+echo "cloned fabric8-forge"
+./systest.sh
+"""
+    }
+  }
+}

@@ -1,0 +1,189 @@
+---
+apiVersion: v1
+kind: Template
+metadata:
+  annotations:
+    fabric8.io/git-commit: a0044ae5b1d3b8c55233b81e24f75dd1c7b5e7ff
+    maven.fabric8.io/app-catalog: "true"
+    fabric8.io/iconUrl: https://funktion.fabric8.io/img/profile.png
+    fabric8.io/git-branch: release-v2.4.19
+    maven.fabric8.io/source-url: jar:file:/Users/jamesrawlings/.m2/repository/io/fabric8/online/packages/app-catalog/1.0-SNAPSHOT/app-catalog-1.0-SNAPSHOT.jar!/META-INF/fabric8/openshift.yml
+  labels:
+    funktion.fabric8.io/kind: Runtime
+    provider: fabric8
+    project: funktion
+    version: 2.4.19
+    group: io.fabric8.platform.apps
+  name: funktion
+objects:
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    annotations:
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/fabric8-platform/apps/funktion-operator/target/funktion-operator-2.4.19.jar!/META-INF/fabric8/openshift.yml
+    labels:
+      provider: fabric8
+      project: funktion-operator
+      version: 2.4.19
+      group: io.fabric8.platform.apps
+    name: funktion-operator
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    annotations:
+      fabric8.io/iconUrl: https://funktion.fabric8.io/img/profile.png
+      maven.fabric8.io/source-url: jar:file:/root/.mvnrepo/io/fabric8/funktion/funktion-runtimes/1.1.42/funktion-runtimes-1.1.42.jar!/META-INF/fabric8/openshift.yml
+    labels:
+      funktion.fabric8.io/kind: Runtime
+      provider: fabric8
+      project: funktion-runtimes
+      version: 1.1.42
+      group: io.fabric8.funktion
+    name: nodejs
+  data:
+    fileExtensions: js
+    debugPort: "5858"
+    deployment: |
+      metadata:
+        annotations:
+          fabric8.io/iconUrl: "https://funktion.fabric8.io/img/profile.png"
+        labels:
+          kind: function
+          name: hello
+      spec:
+        replicas: 1
+        template:
+          metadata:
+            labels:
+              kind: function
+              name: hello
+          spec:
+            terminationGracePeriodSeconds: 1
+            containers:
+            - image: funktion/funktion-nodejs-runtime:1.0.3
+              name: connector
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: source
+                  readOnly: true
+                  mountPath: /usr/src/app/funktion
+              livenessProbe:
+                httpGet:
+                  path: "/healthz"
+                  port: 8888
+                initialDelaySeconds: 30
+              readinessProbe:
+                httpGet:
+                  path: "/healthz"
+                  port: 8888
+                initialDelaySeconds: 2
+            volumes:
+            - name: source
+              configMap:
+                name: hello
+                items:
+                - key: source
+                  path: source.js
+    deploymentDebug: |
+      metadata:
+        annotations:
+          fabric8.io/iconUrl: "https://funktion.fabric8.io/img/profile.png"
+        labels:
+          kind: function
+          name: hello
+      spec:
+        replicas: 1
+        template:
+          metadata:
+            labels:
+              kind: function
+              name: hello
+          spec:
+            terminationGracePeriodSeconds: 1
+            containers:
+            - image: funktion/funktion-nodejs-runtime:1.0.3
+              command:
+              - node
+              - '--inspect'
+              - '--debug=5858'
+              - server.js
+              - '--codepath=./funktion/source.js'
+              name: connector
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: source
+                  readOnly: true
+                  mountPath: /usr/src/app/funktion
+              livenessProbe:
+                httpGet:
+                  path: "/healthz"
+                  port: 8888
+                initialDelaySeconds: 30
+              readinessProbe:
+                httpGet:
+                  path: "/healthz"
+                  port: 8888
+                initialDelaySeconds: 2
+            volumes:
+            - name: source
+              configMap:
+                name: hello
+                items:
+                - key: source
+                  path: source.js
+    service: |
+      metadata:
+        annotations:
+          fabric8.io/iconUrl: "https://funktion.fabric8.io/img/profile.png"
+      spec:
+        ports:
+        - port: 80
+          targetPort: 8888
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      fabric8.io/git-commit: a0044ae5b1d3b8c55233b81e24f75dd1c7b5e7ff
+      fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-platform/master/apps/funktion-operator/src/main/fabric8/icon.png
+      fabric8.io/git-branch: release-v2.4.19
+      fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=funktion-operator&var-version=2.4.19
+      maven.fabric8.io/source-url: jar:file:/home/jenkins/fabric8-platform/apps/funktion-operator/target/funktion-operator-2.4.19.jar!/META-INF/fabric8/openshift.yml
+    labels:
+      provider: fabric8
+      project: funktion-operator
+      version: 2.4.19
+      group: io.fabric8.platform.apps
+    name: funktion-operator
+  spec:
+    replicas: 1
+    selector:
+      project: funktion-operator
+      provider: fabric8
+      group: io.fabric8.platform.apps
+    strategy:
+      rollingParams:
+        timeoutSeconds: 10800
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          fabric8.io/git-commit: a0044ae5b1d3b8c55233b81e24f75dd1c7b5e7ff
+          fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-platform/master/apps/funktion-operator/src/main/fabric8/icon.png
+          fabric8.io/git-branch: release-v2.4.19
+          fabric8.io/metrics-path: dashboard/file/kubernetes-pods.json/?var-project=funktion-operator&var-version=2.4.19
+        labels:
+          provider: fabric8
+          project: funktion-operator
+          version: 2.4.19
+          group: io.fabric8.platform.apps
+      spec:
+        containers:
+        - command:
+          - /bin/operator
+          - operate
+          image: funktion/funktion:1.0.8
+          imagePullPolicy: IfNotPresent
+          name: funktion
+        serviceAccountName: funktion-operator
+    triggers:
+    - type: ConfigChange

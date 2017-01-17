@@ -1,0 +1,12 @@
+---
+name: "cd-pipeline"
+home: "http://fabric8.io/packages/cd-pipeline/"
+sources:
+- "http://github.com/fabric8io/fabric8-online/packages/cd-pipeline"
+version: "1.0-SNAPSHOT"
+description: "Creates the Continuous Delivery Pipeline via: gogs, jenkins, nexus,\
+  \ gerrit and sonaqube"
+maintainers:
+- name: "Fabric8 Development Team"
+  email: "fabric8@googlegroups.com"
+icon: "https://cdn.rawgit.com/fabric8io/fabric8-devops/master/gogs/src/main/fabric8/icon.png"

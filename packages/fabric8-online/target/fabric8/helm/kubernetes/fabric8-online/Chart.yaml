@@ -1,0 +1,11 @@
+---
+name: "fabric8-online"
+home: "http://fabric8.io/packages/fabric8-online/"
+sources:
+- "http://github.com/fabric8io/fabric8-online/packages/fabric8-online"
+version: "1.0-SNAPSHOT"
+description: "The Fabric8 Online Platform"
+maintainers:
+- name: "Fabric8 Development Team"
+  email: "fabric8@googlegroups.com"
+icon: "https://cdn.rawgit.com/fabric8io/fabric8-devops/master/gogs/src/main/fabric8/icon.png"

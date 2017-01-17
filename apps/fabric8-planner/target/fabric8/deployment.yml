@@ -1,0 +1,9 @@
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: "funktion/funktion:1.0.6"
+        imagePullPolicy: "IfNotPresent"
+        name: "funktion"
+        command: ["/bin/operator", "operate"]

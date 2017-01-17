@@ -1,0 +1,8 @@
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: "registry.ci.centos.org:5000/almighty/almighty-ui:latest"
+        imagePullPolicy: "IfNotPresent"
+        name: planner
