@@ -54,6 +54,11 @@
       <artifactId>exposecontroller</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>fabric8-planner</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
