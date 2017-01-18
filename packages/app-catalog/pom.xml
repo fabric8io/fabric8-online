@@ -165,9 +165,9 @@
 
           <!-- funktion -->
           <dependency>
-            <groupId>io.fabric8.online.apps</groupId>
+            <groupId>io.fabric8.platform.apps</groupId>
             <artifactId>funktion-operator</artifactId>
-            <version>${project.version}</version>
+            <version>${platform.version}</version>
           </dependency>
           <dependency>
             <groupId>io.fabric8.funktion</groupId>
