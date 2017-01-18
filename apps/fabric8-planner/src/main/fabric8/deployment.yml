@@ -3,6 +3,6 @@ spec:
   template:
     spec:
       containers:
-      - image: "registry.ci.centos.org:5000/almighty/almighty-ui:latest"
+      - image: "docker.io/almightyui/almighty-ui:demo"
         imagePullPolicy: "IfNotPresent"
         name: planner
