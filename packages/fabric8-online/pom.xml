@@ -64,6 +64,11 @@
       <artifactId>che</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.packages</groupId>
+      <artifactId>metrics</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
