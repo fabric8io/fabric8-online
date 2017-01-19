@@ -3,17 +3,107 @@ spec:
   template:
     spec:
       containers:
-      - image: "eclipse/che-server:nightly"
+      - env:
+        - name: "CHE_DOCKER_MACHINE_HOST_EXTERNAL"
+          valueFrom:
+            configMapKeyRef:
+              key: "hostname-http"
+              name: "che"
+        - name: "CHE_WORKSPACE_STORAGE"
+          valueFrom:
+            configMapKeyRef:
+              key: "workspace-storage"
+              name: "che"
+        - name: "CHE_WORKSPACE_STORAGE_CREATE_FOLDERS"
+          valueFrom:
+            configMapKeyRef:
+              key: "workspace-storage-create-folders"
+              name: "che"
+        - name: "CHE_LOCAL_CONF_DIR"
+          valueFrom:
+            configMapKeyRef:
+              key: "local-conf-dir"
+              name: "che"
+        - name: "CHE_OPENSHIFT_ENDPOINT"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-endpoint"
+              name: "che"
+        - name: "CHE_OPENSHIFT_USERNAME"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-username"
+              name: "che"
+        - name: "CHE_OPENSHIFT_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-password"
+              name: "che"
+        - name: "CHE_OPENSHIFT_PROJECT"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-project"
+              name: "che"
+        - name: "CHE_OPENSHIFT_SERVICEACCOUNTNAME"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-serviceaccountname"
+              name: "che"
+        - name: "DOCKER0_BRIDGE_IP"
+          valueFrom:
+            configMapKeyRef:
+              key: "docker0-bridge-ip"
+              name: "che"
+        - name: "CHE_LOG_LEVEL"
+          valueFrom:
+            configMapKeyRef:
+              key: "log-level"
+              name: "che"
+        - name: "CHE_PORT"
+          valueFrom:
+            configMapKeyRef:
+              key: "port"
+              name: "che"
+        - name: "CHE_DOCKER_CONNECTOR"
+          valueFrom:
+            configMapKeyRef:
+              key: "docker-connector"
+              name: "che"
+        image: "mariolet/che-server:openshiftconnector"
         imagePullPolicy: "IfNotPresent"
         name: che
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 20
+          timeoutSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+        ports:
+        - containerPort: 8080
+          name: "http"
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: "/var/run/docker.sock"
           name: "docker"
           readOnly: false
+        - mountPath: "/conf"
+          name: "che-conf-volume"
+          readOnly: false
+        - mountPath: "/data"
+          name: "che-data-volume"
       serviceAccountName: "che"
       volumes:
       - hostPath:
           path: "/var/run/docker.sock"
         name: "docker"
+      - name: che-conf-volume
+        persistentVolumeClaim:
+          claimName: che-conf-volume
+      - name: che-data-volume
+        persistentVolumeClaim:
+          claimName: che-data-volume
