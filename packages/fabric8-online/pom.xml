@@ -59,6 +59,11 @@
       <artifactId>fabric8-planner</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>che</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

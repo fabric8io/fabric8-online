@@ -1,0 +1,19 @@
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: "eclipse/che-server:nightly"
+        imagePullPolicy: "IfNotPresent"
+        name: che
+      securityContext:
+        privileged: true
+      volumeMounts:
+      - mountPath: "/var/run/docker.sock"
+        name: "docker"
+        readOnly: false
+    serviceAccountName: "che"
+    volumes:
+    - hostPath:
+        path: "/var/run/docker.sock"
+      name: "docker"
