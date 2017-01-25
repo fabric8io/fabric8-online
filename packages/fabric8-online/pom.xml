@@ -69,6 +69,16 @@
       <artifactId>metrics</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>elasticsearch</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>kibana</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
   </dependencies>
 
   <build>
