@@ -1,0 +1,5 @@
+data:
+  oauth-issuer: "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}"
+  oauth-logout-uri: "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/connect/endsession?id_token={{id_token}}"
+  oauth-client-id: "fabric8"
+  oauth-authorize-uri: "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/oauth/authorize"
