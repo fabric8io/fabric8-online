@@ -55,9 +55,9 @@
       <version>${fabric8.devops.version}</version>
     </dependency>
     <dependency>
-      <groupId>io.fabric8.devops.apps</groupId>
+      <groupId>io.fabric8.forge.apps</groupId>
       <artifactId>fabric8-forge</artifactId>
-      <version>${fabric8.devops.version}</version>
+      <version>${fabric8.forge.version}</version>
     </dependency>
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
