@@ -26,7 +26,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8.online.packages</groupId>
-  <artifactId>fabric8-team</artifactId>
+  <artifactId>fabric8-online-team</artifactId>
 
   <name>Fabric8 Online :: Packages :: Team</name>
   <description>The Fabric8 Microservices Online :: Team</description>
@@ -40,6 +40,11 @@
     <dependency>
       <groupId>io.fabric8.online.packages</groupId>
       <artifactId>cd-pipeline</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>che</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
