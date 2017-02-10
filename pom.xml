@@ -75,7 +75,7 @@
     <fabric8.devops.version>2.2.311</fabric8.devops.version>
     <fabric8.forge.version>2.3.88</fabric8.forge.version>
     <fabric8.ipaas.version>2.2.168</fabric8.ipaas.version>
-    <fabric8-ui.version>v31cb97d</fabric8-ui.version>
+    <fabric8-ui.version>v7dd38f1</fabric8-ui.version>
     <platform.version>2.4.19</platform.version>
     <funktion-connectors.version>1.1.42</funktion-connectors.version>
     <funktion.version>1.0.6</funktion.version>
