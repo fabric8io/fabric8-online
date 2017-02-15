@@ -4,7 +4,7 @@ spec:
     spec:
       containers:
       - env:
-        - name: "CHE_DOCKER_MACHINE_HOST_EXTERNAL"
+        - name: "CHE_DOCKER_IP_EXTERNAL"
           valueFrom:
             configMapKeyRef:
               key: "hostname-http"
@@ -29,6 +29,11 @@ spec:
             configMapKeyRef:
               key: "openshift-endpoint"
               name: "che"
+        - name: "CHE_OPENSHIFT_TOKEN"
+          valueFrom:
+            configMapKeyRef:
+              key: "openshift-token"
+              name: "che"
         - name: "CHE_OPENSHIFT_USERNAME"
           valueFrom:
             configMapKeyRef:
@@ -49,10 +54,10 @@ spec:
             configMapKeyRef:
               key: "openshift-serviceaccountname"
               name: "che"
-        - name: "DOCKER0_BRIDGE_IP"
+        - name: "CHE_DOCKER_SERVER__EVALUATION__STRATEGY"
           valueFrom:
             configMapKeyRef:
-              key: "docker0-bridge-ip"
+              key: "che-server-evaluation-strategy"
               name: "che"
         - name: "CHE_LOG_LEVEL"
           valueFrom:
@@ -69,7 +74,7 @@ spec:
             configMapKeyRef:
               key: "docker-connector"
               name: "che"
-        image: "mariolet/che-server:openshiftconnector"
+        image: "rhche/che-server:nightly"
         imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
