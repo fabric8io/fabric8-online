@@ -33,9 +33,8 @@
 
   <modules>
     <module>che</module>
-    <module>bayesian</module>
+    <module>bayesian-link</module>
     <module>fabric8-planner</module>
-    <module>fabric8-ui</module>
   </modules>
 
   <build>

@@ -32,13 +32,20 @@
   <description>The Fabric8 Online Platform</description>
 
   <dependencies>
+
+    <!-- to be replaced by fabric8-runtime-console -->
     <dependency>
       <groupId>io.fabric8.online.packages</groupId>
       <artifactId>console</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.platform.console2</groupId>
+      <artifactId>fabric8-runtime-console</artifactId>
+      <version>${fabric8-runtime-console.version}</version>
+    </dependency>
 
-    <!-- lets add some global services -->
+    <!-- to be replaced by content-repository -->
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>nexus</artifactId>
@@ -46,19 +53,43 @@
     </dependency>
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>content-repository</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>jenkins</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>che</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <!-- to be replaced by github -->
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>gogs</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
+
+    <!-- to be replaced by forge saas -->
     <dependency>
       <groupId>io.fabric8.forge.apps</groupId>
       <artifactId>fabric8-forge</artifactId>
       <version>${fabric8.forge.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>fabric8-planner</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <!-- fabric8 utility microservices -->
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>configmapcontroller</artifactId>
@@ -69,21 +100,8 @@
       <artifactId>exposecontroller</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
-    <dependency>
-      <groupId>io.fabric8.online.apps</groupId>
-      <artifactId>fabric8-planner</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8.online.apps</groupId>
-      <artifactId>che</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8.devops.packages</groupId>
-      <artifactId>metrics</artifactId>
-      <version>${fabric8.devops.version}</version>
-    </dependency>
+
+    <!-- store and visualise events -->
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>elasticsearch</artifactId>
@@ -92,6 +110,13 @@
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
       <artifactId>kibana</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+
+    <!-- capture and analise metrics -->
+    <dependency>
+      <groupId>io.fabric8.devops.packages</groupId>
+      <artifactId>metrics</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
   </dependencies>

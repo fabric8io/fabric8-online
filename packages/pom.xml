@@ -29,17 +29,15 @@
   <artifactId>packages</artifactId>
   <packaging>pom</packaging>
 
-  <name>Fabric8 Online :: Packages</name>
+  <name>Fabric8 Online :: Packages :: All In One</name>
 
   <properties>
   </properties>
 
   <modules>
-    <module>cd-pipeline</module>
-    <module>app-catalog</module>
-    <module>console</module>
+    <module>fabric8-dsaas</module>
     <module>fabric8-online-team</module>
-    <module>fabric8-online</module>
+    <module>fabric8-online-allinone</module>
     <module>distro</module>
   </modules>
 
