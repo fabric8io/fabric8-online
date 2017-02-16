@@ -1,3 +1,6 @@
+metadata:
+  labels:
+    expose: false
 spec:
   type: ExternalName
   externalName: ${bayesian.external.name}
