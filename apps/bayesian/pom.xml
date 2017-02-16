@@ -29,10 +29,10 @@
   <name>Fabric8 Online :: Apps :: Bayesian Integration</name>
 
   <properties>
-    <bayesian.ip>0.0.0.1</bayesian.ip>
-    <bayesian.port>99</bayesian.port>
+    <bayesian.external.name>bayesian</bayesian.external.name>
+    <bayesian.port>80</bayesian.port>
   </properties>
-  
+
   <build>
     <plugins>
       <plugin>

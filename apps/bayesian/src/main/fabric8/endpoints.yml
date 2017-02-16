@@ -1,5 +1,0 @@
-subsets:
-- addresses:
-  - ip: ${bayesian.ip}
-  ports:
-  - port: ${bayesian.port}
