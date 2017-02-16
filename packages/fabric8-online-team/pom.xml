@@ -33,19 +33,30 @@
 
   <dependencies>
     <dependency>
-      <groupId>io.fabric8.online.packages</groupId>
-      <artifactId>console</artifactId>
-      <version>${project.version}</version>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>content-repository</artifactId>
+      <version>${fabric8.devops.version}</version>
     </dependency>
     <dependency>
-      <groupId>io.fabric8.online.packages</groupId>
-      <artifactId>cd-pipeline</artifactId>
-      <version>${project.version}</version>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>jenkins</artifactId>
+      <version>${fabric8.devops.version}</version>
     </dependency>
     <dependency>
       <groupId>io.fabric8.online.apps</groupId>
       <artifactId>che</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>bayesian-link</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>exposecontroller</artifactId>
+      <version>${fabric8.devops.version}</version>
     </dependency>
   </dependencies>
 

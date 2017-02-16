@@ -24,7 +24,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>bayesian</artifactId>
+  <artifactId>bayesian-link</artifactId>
 
   <name>Fabric8 Online :: Apps :: Bayesian Integration</name>
 

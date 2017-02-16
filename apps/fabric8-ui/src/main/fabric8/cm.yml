@@ -1,8 +1,0 @@
-metadata:
-  annotations:
-    expose.config.fabric8.io/oauth-authorize-url-key: oauth-authorize-uri
-data:
-  oauth-issuer: ""
-  oauth-logout-uri: "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}/connect/endsession?id_token={{id_token}}"
-  oauth-client-id: "fabric8"
-  oauth-authorize-uri: ""

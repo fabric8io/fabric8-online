@@ -25,11 +25,50 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>console</artifactId>
+  <groupId>io.fabric8.online.packages</groupId>
+  <artifactId>fabric8-dsaas</artifactId>
 
-  <name>Fabric8 Online :: Packages :: Console</name>
-  <description>The Fabric8 Microservices Console</description>
+  <name>Fabric8 Online :: Packages :: DSaaS</name>
+  <description>The Fabric8 Online Platform</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>io.fabric8.platform.console2</groupId>
+      <artifactId>fabric8-runtime-console</artifactId>
+      <version>${fabric8-runtime-console.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>fabric8-planner</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.packages</groupId>
+      <artifactId>metrics</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>elasticsearch</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>kibana</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>configmapcontroller</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>exposecontroller</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
@@ -53,19 +92,6 @@
             </goals>
           </execution>
         </executions>
-        <dependencies>
-          <dependency>
-            <groupId>io.fabric8.platform.console</groupId>
-            <artifactId>fabric8-console</artifactId>
-            <version>${fabric8.console.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>io.fabric8.online.packages</groupId>
-            <artifactId>app-catalog</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-        </dependencies>
-
       </plugin>
     </plugins>
   </build>
