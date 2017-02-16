@@ -75,11 +75,13 @@
       <artifactId>cd-pipeline</artifactId>
       <version>${project.version}</version>
     </dependency>
+
     <dependency>
-      <groupId>io.fabric8.online.packages</groupId>
-      <artifactId>console</artifactId>
-      <version>${project.version}</version>
+      <groupId>io.fabric8.platform.console</groupId>
+      <artifactId>fabric8-console</artifactId>
+      <version>${fabric8.console.version}</version>
     </dependency>
+    
     <dependency>
       <groupId>io.fabric8.online.packages</groupId>
       <artifactId>fabric8-online</artifactId>
