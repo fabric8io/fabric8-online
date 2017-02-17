@@ -9,7 +9,9 @@ This project generates the distribution of the [fabric8 online platform](https:/
  </p>
 
 The distribution currently builds two packages
-1. fabric8-dsaas - SaaS tools 
+
+### fabric8-dsaas - SaaS tools 
+
   - fabric8-ui
   - planner
   - forge SaaS - not yet included
@@ -19,7 +21,8 @@ The distribution currently builds two packages
   - exposecontroller
   - configmapcontroller
 
-2. fabric8-team - developer tools
+### fabric8-team - developer tools
+
   - jenkins
   - che
   - content repository
