@@ -8,6 +8,8 @@ This project generates the distribution of the [fabric8 online platform](https:/
    </a>
  </p>
 
+## What's included?
+
 The distribution currently builds two packages
 
 ### fabric8-dsaas - SaaS tools 
