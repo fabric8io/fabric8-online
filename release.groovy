@@ -21,9 +21,9 @@ def release(project){
     stagedProject = project
     useGitTagForNextVersion = true
     helmPush = false
-    groupId = 'io.fabric8.online.distro'
+    groupId = 'io.fabric8.online.packages'
     githubOrganisation = 'fabric8io'
-    artifactIdToWatchInCentral = 'distro'
+    artifactIdToWatchInCentral = 'packages'
     artifactExtensionToWatchInCentral = 'pom'
     promoteToDockerRegistry = 'docker.io'
     dockerOrganisation = 'fabric8'

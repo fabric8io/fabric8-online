@@ -52,12 +52,6 @@
       <artifactId>bayesian-link</artifactId>
       <version>${project.version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>io.fabric8.devops.apps</groupId>
-      <artifactId>exposecontroller</artifactId>
-      <version>${fabric8.devops.version}</version>
-    </dependency>
   </dependencies>
 
   <build>

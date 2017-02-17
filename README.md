@@ -8,6 +8,22 @@ This project generates the distribution of the [fabric8 online platform](https:/
    </a>
  </p>
 
+The distribution currently builds two packages
+1. fabric8-dsaas - SaaS tools 
+  - fabric8-ui
+  - planner
+  - forge SaaS - not yet included
+  - bayesian - not yet included
+  - elasticsearch
+  - kibana
+  - exposecontroller
+  - configmapcontroller
+
+2. fabric8-team - developer tools
+  - jenkins
+  - che
+  - content repository
+
 ## Deploying
 
 Quickest way to get started is with `gofabric8`

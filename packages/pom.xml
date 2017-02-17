@@ -37,7 +37,6 @@
   <modules>
     <module>fabric8-dsaas</module>
     <module>fabric8-online-team</module>
-    <module>fabric8-online-allinone</module>
   </modules>
 
   <build>
