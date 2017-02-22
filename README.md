@@ -85,3 +85,8 @@ now use gofabric8 to change the PVCs to use the minishift VM host path to persis
 ```
 gofabric8 volumes
 ```
+
+Get the URL to access Che on:
+```
+oc get route che
+```
