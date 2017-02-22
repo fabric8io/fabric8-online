@@ -34,7 +34,7 @@ The distribution currently builds two packages
 To deploy the developer tools get the latest release tag from this fabric8-online repo, we will use 1.0.27 as an example until we automate updating this ReadMe.  Then download the release YAML which contains the deployment / deployment configs. configmaps etc and start the VM pointing to the released fabric8-online resources.
 
 ```
-export ONLINE_VERSION=1.0.27
+export ONLINE_VERSION=1.0.28
 ```
 
 ### Remote deploy
@@ -50,7 +50,9 @@ oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-o
 #### OpenShift
 
 ```
+oc new-project online-tennant
 oc adm policy add-scc-to-user privileged -z che
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:online-tennant:che
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
 ```
 
@@ -61,7 +63,8 @@ To run fabric8 online locally we recommend using minikube or minishift
 #### Minikube
 
 ```
-oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-kubernetes.yml
+kubectl apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-kubernetes.yml
+kubectl apply -f http://central.maven.org/maven2/io/fabric8/devops/apps/exposecontroller/2.2.317/exposecontroller-2.2.317-kubernetes.yml
 ```
 now use gofabric8 to change the PVCs to use the minishift VM host path to persist data
 
@@ -71,8 +74,11 @@ gofabric8 volumes
 #### Minishift
 
 ```
+oc new-project online-tennant
 oc adm policy add-scc-to-user privileged -z che
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:online-tennant:che
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
+oc expose service che --hostname=che.$(minishift ip).nip.io
 ```
 now use gofabric8 to change the PVCs to use the minishift VM host path to persist data
 
