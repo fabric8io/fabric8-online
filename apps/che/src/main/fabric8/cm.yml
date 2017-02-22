@@ -7,7 +7,6 @@ data:
   openshift-token: ""
   openshift-username: "openshift-dev"
   openshift-password: "devel"
-  openshift-project: "eclipse-che"
   openshift-serviceaccountname: "che"
   che-server-evaluation-strategy: "docker-local"
   log-level: "INFO"

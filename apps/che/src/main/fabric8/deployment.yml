@@ -46,9 +46,8 @@ spec:
               name: "che"
         - name: "CHE_OPENSHIFT_PROJECT"
           valueFrom:
-            configMapKeyRef:
-              key: "openshift-project"
-              name: "che"
+            fieldRef:
+              fieldPath: "metadata.namespace"
         - name: "CHE_OPENSHIFT_SERVICEACCOUNTNAME"
           valueFrom:
             configMapKeyRef:
