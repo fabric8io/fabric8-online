@@ -39,7 +39,7 @@
     </dependency>
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
-      <artifactId>jenkins</artifactId>
+      <artifactId>jenkins-openshift</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
     <dependency>
