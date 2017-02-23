@@ -34,7 +34,7 @@ The distribution currently builds two packages
 To deploy the developer tools get the latest release tag from this fabric8-online repo, we will use 1.0.27 as an example until we automate updating this ReadMe.  Then download the release YAML which contains the deployment / deployment configs. configmaps etc and start the VM pointing to the released fabric8-online resources.
 
 ```
-export ONLINE_VERSION=1.0.29
+export ONLINE_VERSION=1.0.30
 ```
 
 ### Remote deploy
@@ -74,7 +74,7 @@ gofabric8 volumes
 #### Minishift
 
 ```
-export ONLINE_VERSION=1.0.29
+export ONLINE_VERSION=1.0.30
 oc new-project online-tennant
 oc adm policy add-scc-to-user privileged -z che
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:online-tennant:che
