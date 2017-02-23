@@ -8,7 +8,7 @@ metadata:
     project: "${project.artifactId}"
     provider: "fabric8"
     expose: "true"
-  name: "che"
+  name: "che-host"
 spec:
   ports:
   - name: "http"
