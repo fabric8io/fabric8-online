@@ -89,5 +89,5 @@ gofabric8 volumes
 
 Get the URL to access Che on:
 ```
-oc get route che
+oc get route che-host
 ```
