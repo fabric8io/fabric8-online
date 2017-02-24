@@ -73,7 +73,7 @@ spec:
             configMapKeyRef:
               key: "docker-connector"
               name: "che"
-        image: "rawlingsj/che-server:nightly"
+        image: "rhche/che-server:nightly"
         imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
