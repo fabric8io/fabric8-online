@@ -73,6 +73,11 @@ spec:
             configMapKeyRef:
               key: "docker-connector"
               name: "che"
+        - name: "CHE_DEBUG_SERVER"
+          valueFrom:
+            configMapKeyRef:
+              key: "remote-debugging-enabled"
+              name: "che"
         image: "rhche/che-server:nightly"
         imagePullPolicy: "IfNotPresent"
         name: che
@@ -89,6 +94,8 @@ spec:
         ports:
         - containerPort: 8080
           name: "http"
+        - containerPort: 8000
+          name: "http-debug"
         securityContext:
           privileged: true
         volumeMounts:
