@@ -79,6 +79,21 @@ oc new-project online-tennant
 oc adm policy add-scc-to-user privileged -z che
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
 ```
+For now we have to update the Che configmap to use the che hostname so we can connect to the workspace:
+```
+oc get route Che
+```
+edit the configmap
+```
+oc edit cm che
+```
+and replace `hostname-http:` value with the Che external hostname from the previous step
+
+bounce the Che master pod so the new config is used
+```
+oc delete pod $(oc get pods | grep che | cut -f 1 -d ' ')
+```
+```
 now use gofabric8 to change the PVCs to use the minishift VM host path to persist data
 
 ```
