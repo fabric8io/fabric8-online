@@ -12,3 +12,4 @@ data:
   log-level: "INFO"
   docker-connector: "openshift"
   port: "8080"
+  remote-debugging-enabled: "false"
