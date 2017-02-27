@@ -77,9 +77,7 @@ gofabric8 volumes
 export ONLINE_VERSION=1.0.30
 oc new-project online-tennant
 oc adm policy add-scc-to-user privileged -z che
-oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:online-tennant:che
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
-oc expose service che-host --hostname=che.$(minishift ip).nip.io
 ```
 now use gofabric8 to change the PVCs to use the minishift VM host path to persist data
 
@@ -87,7 +85,7 @@ now use gofabric8 to change the PVCs to use the minishift VM host path to persis
 gofabric8 volumes
 ```
 
-Get the URL to access Che on:
+Get the URLs to access an application:
 ```
-oc get route che-host
+oc get route
 ```
