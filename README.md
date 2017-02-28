@@ -57,7 +57,7 @@ To run fabric8 online locally we recommend using minishift
 #### Minishift
 
 ```
-export ONLINE_VERSION=1.0.30
+export ONLINE_VERSION=1.0.35
 minishift start --vm-driver=xhyve --memory=6096 --cpus=2
 oc new-project online-tennant
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
