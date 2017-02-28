@@ -20,14 +20,14 @@ deployOpenShiftTemplate{
 
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
-          sh "oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml"
+          sh "oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -n ${prj}"
           
           waitUntil{
             // wait until the pods are running has been deleted
             try{
               //sh "oc get pods -l provider=fabric8 | cut -f 1 -d ' ' | grep fabric8-test"
-              sh "oc get pods \$(oc get pods | grep jenkins | cut -f 1 -d ' ') | grep Running"
-              sh "oc get pods \$(oc get pods | grep content-repo | cut -f 1 -d ' ') | grep Running"
+              sh "oc get pods -n ${prj} \$(oc get pods -n ${prj} | grep jenkins | cut -f 1 -d ' ') | grep Running"
+              sh "oc get pods -n ${prj} \$(oc get pods -n ${prj} | grep content-repo | cut -f 1 -d ' ') | grep Running"
               echo "Jenkins and Content Repository pods Running for v ${releaseVersion}"
               return true
             } catch (err) {
@@ -35,7 +35,7 @@ deployOpenShiftTemplate{
               return false
             }
           }
-          def routes = sh(script: 'oc get routes', returnStdout: true).toString().trim()
+          def routes = sh(script: 'oc get routes -n ${prj} ', returnStdout: true).toString().trim()
           def msg = """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
           ${routes}
           """
