@@ -15,7 +15,7 @@ deployOpenShiftTemplate{
         def stagedProject = pipeline.stage()
         releaseVersion = stagedProject[1]
 
-        stage 'Deploy to openshift.io'
+        stage 'Deploy to OpenShift'
         def prj = 'f8'
 
         container(name: 'clients') {
@@ -27,9 +27,10 @@ deployOpenShiftTemplate{
           waitUntil{
             // wait until the pods are running has been deleted
             try{
-              //sh "oc get pods -l provider=fabric8 | cut -f 1 -d ' ' | grep fabric8-test"
-              sh "oc get pods -n ${prj} \$(oc get pods -n ${prj} | grep jenkins | cut -f 1 -d ' ') | grep Running"
-              sh "oc get pods -n ${prj} \$(oc get pods -n ${prj} | grep content-repo | cut -f 1 -d ' ') | grep Running"
+              sh "oc get pod -l project=jenkins-openshift,provider=fabric8 -n ${prj} | grep Running"
+              sh "oc get pod -l project=content-repository,provider=fabric8 -n ${prj} | grep Running"
+              // che wont start yet as needs the SCC but not for long
+              //sh "oc get pod -l project=che,provider=fabric8 -n ${prj} | grep Running"
               echo "Jenkins and Content Repository pods Running for v ${releaseVersion}"
               return true
             } catch (err) {
@@ -44,7 +45,7 @@ deployOpenShiftTemplate{
           hubot room: 'release', message: msg
 
           stage "Trigger sample build"
-          sh "oc start-build spring-boot-webmvc-jr --wait"
+          sh "oc start-build spring-boot-webmvc-jr --wait -n ${prj}"
             
         }
 
