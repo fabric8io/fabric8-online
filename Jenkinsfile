@@ -20,8 +20,8 @@ deployOpenShiftTemplate{
 
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
-          sh "oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online/${releaseVersion}/fabric8-online-${releaseVersion}-openshift.yml"
-
+          sh "oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml"
+          
           waitUntil{
             // wait until the pods are running has been deleted
             try{
