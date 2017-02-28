@@ -39,7 +39,7 @@ deployOpenShiftTemplate{
             }
           }
           def routes = sh(script: 'oc get routes', returnStdout: true).toString().trim()
-          def msg """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
+          def msg = """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
           ${routes}
           """
           hubot room: 'release', message: msg
