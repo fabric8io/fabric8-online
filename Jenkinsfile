@@ -20,7 +20,7 @@ deployOpenShiftTemplate{
 
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
-          sh "oc apply -f oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml"
+          sh "oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml"
 
           waitUntil{
             // wait until the pods are running has been deleted
@@ -53,6 +53,7 @@ deployOpenShiftTemplate{
         pipeline.release(stagedProject)
       } catch (err){
           hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
+          error "${err}"
       }
     }
   }
