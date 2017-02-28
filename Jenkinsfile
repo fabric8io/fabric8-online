@@ -16,7 +16,7 @@ deployOpenShiftTemplate{
         releaseVersion = stagedProject[1]
 
         stage 'Deploy to openshift.io'
-        def token = readFile file: "/root/.oc/token"
+        def token = readFile file: "/root/home/.oc/token"
         def prj = 'f8'
 
         container(name: 'clients') {
