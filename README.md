@@ -72,11 +72,11 @@ Until we figure out the right roles for the pielines to create and edit environm
 ```
 oc new-project $PRJ_NAME-staging
 oc new-project $PRJ_NAME-production
-oc adm policy add-cluster-role-to-user edit system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-staging
-oc adm policy add-cluster-role-to-user view system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-production
-oc adm policy add-cluster-role-to-user edit system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-staging
-oc adm policy add-cluster-role-to-user view system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-production
 oc project $PRJ_NAME
+oc adm policy add-role-to-user edit system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-staging
+oc adm policy add-role-to-user view system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-staging
+oc adm policy add-role-to-user edit system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-production
+oc adm policy add-role-to-user view system:serviceaccount:$PRJ_NAME:jenkins --namespace $PRJ_NAME-production
 ```
 __minishift ONLY__
 
@@ -87,7 +87,7 @@ oc adm policy add-scc-to-user privileged -z che
 gofabric8 volumes
 oc login -u developer
 ```
-retry the Che deployment as it will have failed first time without the SCC added:
+retry the Che deployment if it is in failed state without the SCC added:
 ```
 oc deploy --retry che
 ```
