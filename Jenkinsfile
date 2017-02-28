@@ -16,12 +16,9 @@ deployOpenShiftTemplate{
         releaseVersion = stagedProject[1]
 
         stage 'Deploy to openshift.io'
-        def token = readFile file: "/root/home/.oc/token"
         def prj = 'f8'
 
         container(name: 'clients') {
-          sh "oc login ${config.url} --token=${token} --insecure-skip-tls-verify=true"
-
           stage "Applying ${releaseVersion} updates"
           sh "oc apply -f oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml"
 
