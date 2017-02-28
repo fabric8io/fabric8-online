@@ -48,7 +48,7 @@ minishift start --vm-driver=xhyve --memory=6096 --cpus=2 --routing-suffix=192.16
 ## Deploy
 The fabric8 online distribution is versioned and released to maven central.  Using the scripts and commands below we will deploy the latest version in a new project called openshift-tennant, change the `$PRJ_NAME` value if you want a different project:
 ```
-export PRJ_NAME=online-tennant
+export PRJ_NAME=online-tenant
 export ONLINE_VERSION=$(curl -L http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/maven-metadata.xml | grep '<latest' | cut -f2 -d">"|cut -f1 -d"<")
 
 oc new-project $PRJ_NAME
