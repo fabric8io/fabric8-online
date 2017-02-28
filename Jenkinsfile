@@ -12,7 +12,7 @@ deployOpenShiftTemplate{
 
       stage 'Stage'
       def stagedProject = pipeline.stage()
-      releaseVersion = project[1]
+      releaseVersion = stagedProject[1]
 
       stage 'Deploy to openshift.io'
       
@@ -38,7 +38,10 @@ deployOpenShiftTemplate{
             return false
           }
         }
-
+        def routes = sh(script: 'oc get routes', returnStdout: true).toString().trim()
+        echo """Applications are accessible on: 
+        ${routes}
+        """
         stage "Trigger sample build"
         sh "oc start-build spring-boot-webmvc-jr --wait"
           
