@@ -62,7 +62,7 @@ minishift start --vm-driver=xhyve --memory=6096 --cpus=2
 oc new-project online-tennant
 oc apply -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team/$ONLINE_VERSION/fabric8-online-team-$ONLINE_VERSION-openshift.yml
 ```
-For now we have to update the Che configmap to use the che hostname so we can connect to the workspace:
+for now we have to update the Che configmap to use the che hostname so we can connect to the workspace:
 ```
 oc get route Che
 ```
@@ -75,6 +75,9 @@ and replace `hostname-http:` value with the Che external hostname from the previ
 now use gofabric8 to change the PVCs to use the minishift VM host path to persist data and set extra permissions for Che
 ```
 oc login -u system:admin
+oc adm policy add-cluster-role-to-user self-provisioner system:serviceaccount:myproject:jenkins
+oc adm policy add-cluster-role-to-user edit system:serviceaccount:myproject:jenkins
+oc adm policy add-cluster-role-to-user view system:serviceaccount:myproject:jenkins
 oc adm policy add-scc-to-user privileged -z che
 gofabric8 volumes
 oc login -u developer
