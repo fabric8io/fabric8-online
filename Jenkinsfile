@@ -21,7 +21,9 @@ deployOpenShiftTemplate{
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
           sh "oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -n ${prj}"
-          
+
+          sleep 20 // ok bad bad but there's a delay between DC's being applied and new pods being started.  lets find a better way to do this looking at teh new DC perhaps?
+
           waitUntil{
             // wait until the pods are running has been deleted
             try{
@@ -35,7 +37,7 @@ deployOpenShiftTemplate{
               return false
             }
           }
-          def routes = sh(script: 'oc get routes -n ${prj} ', returnStdout: true).toString().trim()
+          def routes = sh(script: "oc get routes -n ${prj}", returnStdout: true).toString().trim()
           def msg = """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
           ${routes}
           """
