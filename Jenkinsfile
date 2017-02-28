@@ -54,9 +54,9 @@ deployOpenShiftTemplate{
 
         stage 'Promote'
         pipeline.release(stagedProject)
+      } catch (err){
+          hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
       }
-    } catch (err){
-        hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
     }
   }
 }
