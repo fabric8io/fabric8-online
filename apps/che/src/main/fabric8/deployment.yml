@@ -79,7 +79,7 @@ spec:
               key: "remote-debugging-enabled"
               name: "che"
         image: "rhche/che-server:nightly"
-        imagePullPolicy: "Always"
+        imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
           tcpSocket:
@@ -96,7 +96,12 @@ spec:
           name: "http"
         - containerPort: 8000
           name: "http-debug"
+        securityContext:
+          privileged: true
         volumeMounts:
+        - mountPath: "/var/run/docker.sock"
+          name: "docker"
+          readOnly: false
         - mountPath: "/conf"
           name: "che-conf-volume"
           readOnly: false
@@ -104,6 +109,9 @@ spec:
           name: "che-data-volume"
       serviceAccountName: "che"
       volumes:
+      - hostPath:
+          path: "/var/run/docker.sock"
+        name: "docker"
       - name: che-conf-volume
         persistentVolumeClaim:
           claimName: che-conf-volume
