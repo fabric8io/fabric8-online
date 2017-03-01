@@ -16,7 +16,7 @@ deployOpenShiftTemplate{
         releaseVersion = stagedProject[1]
 
         stage 'Deploy to OpenShift'
-        def prj = 'f8'
+        def prj = 'online-tenant'
 
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
