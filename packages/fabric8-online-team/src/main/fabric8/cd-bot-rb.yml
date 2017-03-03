@@ -1,0 +1,9 @@
+metadata:
+  name: view-cd-bot
+roleRef:
+  name: cd-bot
+subjects:
+- kind: ServiceAccount
+  name: cd-bot
+roleRef:
+  name: view
