@@ -24,26 +24,6 @@ spec:
             configMapKeyRef:
               key: "local-conf-dir"
               name: "che"
-        - name: "CHE_OPENSHIFT_ENDPOINT"
-          valueFrom:
-            configMapKeyRef:
-              key: "openshift-endpoint"
-              name: "che"
-        - name: "CHE_OPENSHIFT_TOKEN"
-          valueFrom:
-            configMapKeyRef:
-              key: "openshift-token"
-              name: "che"
-        - name: "CHE_OPENSHIFT_USERNAME"
-          valueFrom:
-            configMapKeyRef:
-              key: "openshift-username"
-              name: "che"
-        - name: "CHE_OPENSHIFT_PASSWORD"
-          valueFrom:
-            configMapKeyRef:
-              key: "openshift-password"
-              name: "che"
         - name: "CHE_OPENSHIFT_PROJECT"
           valueFrom:
             fieldRef:
@@ -96,12 +76,7 @@ spec:
           name: "http"
         - containerPort: 8000
           name: "http-debug"
-        securityContext:
-          privileged: true
         volumeMounts:
-        - mountPath: "/var/run/docker.sock"
-          name: "docker"
-          readOnly: false
         - mountPath: "/conf"
           name: "che-conf-volume"
           readOnly: false
@@ -109,9 +84,6 @@ spec:
           name: "che-data-volume"
       serviceAccountName: "che"
       volumes:
-      - hostPath:
-          path: "/var/run/docker.sock"
-        name: "docker"
       - name: che-conf-volume
         persistentVolumeClaim:
           claimName: che-conf-volume
