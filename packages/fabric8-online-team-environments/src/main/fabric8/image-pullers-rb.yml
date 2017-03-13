@@ -1,0 +1,13 @@
+apiVersion: v1
+groupNames:
+- system:serviceaccounts:${PROJECT_NAME}
+kind: RoleBinding
+metadata:
+  creationTimestamp: null
+  name: system:image-pullers
+  namespace: ${PROJECT_NAME}
+roleRef:
+  name: system:image-puller
+subjects:
+- kind: SystemGroup
+  name: system:serviceaccounts:${PROJECT_NAME}
