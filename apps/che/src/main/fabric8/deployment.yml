@@ -61,7 +61,7 @@ spec:
               key: "remote-debugging-enabled"
               name: "che"
         image: "rhche/che-server:nightly"
-        imagePullPolicy: "IfNotPresent"
+        imagePullPolicy: "Always"
         name: che
         readinessProbe:
           tcpSocket:
