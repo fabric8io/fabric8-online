@@ -4,7 +4,7 @@ data:
   workspace-storage-create-folders: "false"
   local-conf-dir: "/etc/conf"
   openshift-serviceaccountname: "che"
-  che-server-evaluation-strategy: "docker-local"
+  che-server-evaluation-strategy: "single-port"
   log-level: "INFO"
   docker-connector: "openshift"
   port: "8080"

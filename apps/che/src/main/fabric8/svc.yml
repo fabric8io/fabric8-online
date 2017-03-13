@@ -7,7 +7,7 @@ metadata:
   labels:
     project: "${project.artifactId}"
     provider: "fabric8"
-    expose: "true"
+    expose: "false"
   name: "che-host"
 spec:
   ports:
