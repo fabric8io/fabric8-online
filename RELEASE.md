@@ -24,14 +24,14 @@ git commit -a -m 'new openshift sync plugin'
 git push  origin master
 ```
 
-trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/openshift-jenkins-s2i-config/job/master/
+- trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/openshift-jenkins-s2i-config/job/master/
 
-you can see the new version here https://hub.docker.com/r/fabric8/jenkins-openshift/tags/
+- you can see the new version here https://hub.docker.com/r/fabric8/jenkins-openshift/tags/
 
-trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/fabric8-devops/
+- trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/fabric8-devops/
 fabric8-devops will have already been updated with the new tag
 
-trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/fabric8-online/job/master/
+- trigger http://jenkins.cd.k8s.fabric8.io/job/fabric8-cd/job/fabric8-online/job/master/
 new fabric8-online yaml now includes the new jenkins 
 
 
