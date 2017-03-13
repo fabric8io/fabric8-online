@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: admin
+  namespace: ${PROJECT_NAME}
+roleRef:
+  name: admin
+subjects:
+- kind: User
+  name: ${PROJECT_ADMIN_USER}
+userNames:
+- ${PROJECT_ADMIN_USER}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: system:image-builders
+  namespace: ${PROJECT_NAME}
+roleRef:
+  name: system:image-builder
+subjects:
+- kind: ServiceAccount
+  name: builder
+userNames:
+- system:serviceaccount:${PROJECT_NAME}:builder

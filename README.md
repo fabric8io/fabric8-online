@@ -112,3 +112,12 @@ oc start-build spring-boot-webmvc-jr
 View the pipeline in Jenkins or the OpenShift console
 
 
+## Creating envionments
+
+__NOTE__ a user or serviceaccount requires the self-provisioner role to request new openshift projects (environments).
+
+```
+export ONLINE_VERSION=$(curl -L http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team-environments/maven-metadata.xml | grep '<latest' | cut -f2 -d">"|cut -f1 -d"<")
+
+oc process -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team-environments/$ONLINE_VERSION/fabric8-online-team-environments-$ONLINE_VERSION-openshift.yml -v PROJECT_NAME=test -v PROJECT_DISPLAYNAME=tester -v PROJECT_DESCRIPTION=testprj -v PROJECT_ADMIN_USER=developer -v PROJECT_REQUESTING_USER=system:admin  | oc apply -f -
+```
