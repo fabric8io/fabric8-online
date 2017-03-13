@@ -6,4 +6,4 @@ subjects:
 - kind: ServiceAccount
   name: che
 roleRef:
-  name: edit
+  name: admin
