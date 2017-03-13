@@ -60,8 +60,8 @@ spec:
             configMapKeyRef:
               key: "remote-debugging-enabled"
               name: "che"
-        image: "rhche/che-server:nightly"
-        imagePullPolicy: "Always"
+        image: "rhche/che-server:cda3edc"
+        imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
           tcpSocket:
