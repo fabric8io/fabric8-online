@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fabric8-environments
+  annotations:
+    description: Defines the environments used by your Continuous Delivery pipelines.
+    fabric8.console/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-console/master/app-kubernetes/src/main/fabric8/icon.svg
+data:
+  test: |-
+    name: Test
+    namespace: ${PROJECT_NAME}-test
+    order: 0
+  stage: |-
+    name: Stage
+    namespace: ${PROJECT_NAME}-stage
+    order: 1
+  run: |-
+    name: Run
+    namespace: ${PROJECT_NAME}-run
+    order: 2
