@@ -35,6 +35,7 @@
   </properties>
 
   <modules>
+    <module>fabric8-dsaas-minimal</module>
     <module>fabric8-dsaas</module>
     <module>fabric8-online-team</module>
     <module>fabric8-online-team-environments</module>
