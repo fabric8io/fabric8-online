@@ -1,0 +1,19 @@
+rules:
+- resources:
+  - nodes
+  verbs:
+  - get
+  - list
+  - watch
+- resources:
+  - configmaps
+  - services
+  - routes
+  - oauthclients
+  verbs:
+  - create
+  - update
+  - patch
+  - get
+  - list
+  - watch

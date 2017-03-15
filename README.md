@@ -157,5 +157,5 @@ gofabric8 volumes
 ```
 oc new-project fabric8-saas
 cd ../fabric8-online-platform-minimal
-oc apply -f target/classes/META-INF/fabric8/openshift.yml
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v NAMESPACE=fabric8-saas  | oc apply -f -
 ```
