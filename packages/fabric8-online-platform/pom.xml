@@ -26,15 +26,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8.online.packages</groupId>
-  <artifactId>fabric8-dsaas</artifactId>
+  <artifactId>fabric8-online-platform</artifactId>
 
-  <name>Fabric8 Online :: Packages :: DSaaS</name>
+  <name>Fabric8 Online :: Packages :: Platform</name>
   <description>The Fabric8 Online Platform</description>
 
   <dependencies>
     <dependency>
       <groupId>io.fabric8.online.packages</groupId>
-      <artifactId>fabric8-dsaas-minimal</artifactId>
+      <artifactId>fabric8-online-platform-minimal</artifactId>
       <version>${project.version}</version>
     </dependency>
 <!--

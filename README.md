@@ -156,6 +156,6 @@ gofabric8 volumes
 
 ```
 oc new-project fabric8-saas
-cd ../fabric8-dsaas-minimal
+cd ../fabric8-online-platform-minimal
 oc apply -f target/classes/META-INF/fabric8/openshift.yml
 ```

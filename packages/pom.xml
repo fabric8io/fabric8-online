@@ -29,14 +29,14 @@
   <artifactId>packages</artifactId>
   <packaging>pom</packaging>
 
-  <name>Fabric8 Online :: Packages :: All In One</name>
+  <name>Fabric8 Online :: Packages :: Parent</name>
 
   <properties>
   </properties>
 
   <modules>
-    <module>fabric8-dsaas-minimal</module>
-    <module>fabric8-dsaas</module>
+    <module>fabric8-online-platform-minimal</module>
+    <module>fabric8-online-platform</module>
     <module>fabric8-online-jenkins</module>
     <module>fabric8-online-che</module>
     <module>fabric8-online-team</module>
