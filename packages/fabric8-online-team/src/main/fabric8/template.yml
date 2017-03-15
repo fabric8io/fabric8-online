@@ -1,0 +1,10 @@
+kind: Template
+parameters:
+- name: PROJECT_NAME
+  value: myproject
+- name: PROJECT_ADMIN_USER
+  value: developer
+- name: PROJECT_REQUESTING_USER
+  value: system:admin
+- name: PROJECT_DISPLAYNAME
+- name: PROJECT_DESCRIPTION

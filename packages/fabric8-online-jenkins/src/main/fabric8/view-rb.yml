@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: view
+roleRef:
+  name: view
+subjects:
+- kind: User
+  name: ${PROJECT_USER}
+userNames:
+- ${PROJECT_USER}
