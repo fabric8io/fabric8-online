@@ -1,0 +1,9 @@
+metadata:
+  name: exposecontroller
+roleRef:
+  name: exposecontroller
+subjects:
+- kind: ServiceAccount
+  name: exposecontroller
+roleRef:
+  name: admin

@@ -26,37 +26,30 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8.online.packages</groupId>
-  <artifactId>fabric8-dsaas</artifactId>
+  <artifactId>fabric8-dsaas-minimal</artifactId>
 
-  <name>Fabric8 Online :: Packages :: DSaaS</name>
+  <name>Fabric8 Online :: Packages :: DSaaS :: Minimal</name>
   <description>The Fabric8 Online Platform</description>
 
   <dependencies>
     <dependency>
-      <groupId>io.fabric8.online.packages</groupId>
-      <artifactId>fabric8-dsaas-minimal</artifactId>
+      <groupId>io.fabric8.platform.console2</groupId>
+      <artifactId>fabric8-runtime-console</artifactId>
+      <version>${fabric8-runtime-console.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>fabric8-planner</artifactId>
       <version>${project.version}</version>
     </dependency>
-<!--
     <dependency>
-      <groupId>io.fabric8.forge.apps</groupId>
-      <artifactId>fabric8-forge</artifactId>
-      <version>${fabric8.forge.version}</version>
-    </dependency>
--->
-    <dependency>
-      <groupId>io.fabric8.devops.packages</groupId>
-      <artifactId>metrics</artifactId>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>configmapcontroller</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
     <dependency>
       <groupId>io.fabric8.devops.apps</groupId>
-      <artifactId>elasticsearch</artifactId>
-      <version>${fabric8.devops.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8.devops.apps</groupId>
-      <artifactId>kibana</artifactId>
+      <artifactId>exposecontroller</artifactId>
       <version>${fabric8.devops.version}</version>
     </dependency>
   </dependencies>
