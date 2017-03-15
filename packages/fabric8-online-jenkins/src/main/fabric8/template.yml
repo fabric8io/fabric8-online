@@ -1,0 +1,4 @@
+kind: Template
+parameters:
+- name: PROJECT_USER
+  value: developer

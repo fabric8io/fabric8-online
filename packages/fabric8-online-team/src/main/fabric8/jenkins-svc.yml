@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    fabric8.io/app-menu: development
+    fabric8.io/git-commit: 2626c7c3ef02e7dcfc54d9cd7b9359b66ecf269c
+    fabric8.io/scm-con-url: scm:git:git@github.com:fabric8io/fabric8-devops.git/jenkins-openshift
+    fabric8.io/scm-url: http://github.com/fabric8io/fabric8-devops/jenkins-openshift
+    fabric8.io/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-devops/master/jenkins-openshift/src/main/fabric8/icon.svg
+    fabric8.io/git-branch: release-v2.2.329
+    fabric8.io/scm-devcon-url: scm:git:git@github.com:fabric8io/fabric8-devops.git/jenkins-openshift
+    fabric8.io/scm-tag: fabric8-devops-2.0.1
+    maven.fabric8.io/source-url: jar:file:/Users/jstrachan/.m2/repository/io/fabric8/devops/apps/jenkins-openshift/2.2.329/jenkins-openshift-2.2.329.jar!/META-INF/fabric8/kubernetes.yml
+  labels:
+    project: jenkins
+    provider: fabric8
+    expose: "false"
+    version: 2.2.329
+    group: io.fabric8.devops.apps
+  name: jenkins
+spec:
+  type: ExternalName
+  externalName: jenkins.${PROJECT_NAME}-jenkins
+  ports:
+  - name: http
+    port: 80

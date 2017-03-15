@@ -1,0 +1,1 @@
+Minimal Fabric8 Online platform for running locally

@@ -121,3 +121,41 @@ export ONLINE_VERSION=$(curl -L http://central.maven.org/maven2/io/fabric8/onlin
 
 oc process -f http://central.maven.org/maven2/io/fabric8/online/packages/fabric8-online-team-environments/$ONLINE_VERSION/fabric8-online-team-environments-$ONLINE_VERSION-openshift.yml -v PROJECT_NAME=test -v PROJECT_DISPLAYNAME=tester -v PROJECT_DESCRIPTION=testprj -v PROJECT_ADMIN_USER=developer -v PROJECT_REQUESTING_USER=system:admin  | oc apply -f -
 ```
+
+
+## Using Minishift
+
+Here are the instructions for using [minishift](https://github.com/minishift/minishift)
+
+#### clone and build it
+```
+git clone https://github.com/fabric8io/fabric8-online.git
+cd fabric8-online
+mvn install
+```
+
+#### create a user/team set of environments and services
+
+```
+oc login -u system:admin
+cd packages/fabric8-online-team
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_NAME=myproject  -v PROJECT_ADMIN_USER=developer  -v PROJECT_REQUESTING_USER=system:admin | oc apply -f -
+
+cd ../fabric8-online-jenkins
+oc project myproject-jenkins
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=developer  | oc apply -f -
+gofabric8 volumes
+
+cd ../fabric8-online-che
+oc project myproject-che                   e
+oc apply -f target/classes/META-INF/fabric8/openshift.yml
+gofabric8 volumes
+```
+
+#### setup the shared services
+
+```
+oc new-project fabric8-saas
+cd ../fabric8-online-platform-minimal
+oc apply -f target/classes/META-INF/fabric8/openshift.yml
+```

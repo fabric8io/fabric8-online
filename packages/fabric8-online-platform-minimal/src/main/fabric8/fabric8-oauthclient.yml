@@ -1,0 +1,7 @@
+---
+kind: OAuthClient
+apiVersion: v1
+metadata:
+  name: fabric8
+redirectURIs:
+- https://localhost:4200

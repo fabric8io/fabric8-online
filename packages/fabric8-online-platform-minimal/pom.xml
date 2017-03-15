@@ -26,10 +26,33 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8.online.packages</groupId>
-  <artifactId>fabric8-online-team-environments</artifactId>
+  <artifactId>fabric8-online-platform-minimal</artifactId>
 
-  <name>Fabric8 Online :: Packages :: Environments</name>
-  <description>The Fabric8 Microservices Online :: Environments</description>
+  <name>Fabric8 Online :: Packages :: Platform :: Minimal</name>
+  <description>The Fabric8 Online Platform</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.fabric8.platform.console2</groupId>
+      <artifactId>fabric8-runtime-console</artifactId>
+      <version>${fabric8-runtime-console.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>fabric8-planner</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>configmapcontroller</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8.devops.apps</groupId>
+      <artifactId>exposecontroller</artifactId>
+      <version>${fabric8.devops.version}</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
