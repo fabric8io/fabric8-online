@@ -2,8 +2,7 @@ metadata:
   name: exposecontroller
 roleRef:
   name: exposecontroller
+  namespace: ${NAMESPACE}
 subjects:
 - kind: ServiceAccount
   name: exposecontroller
-roleRef:
-  name: admin
