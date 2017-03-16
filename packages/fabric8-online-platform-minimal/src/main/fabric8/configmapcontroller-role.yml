@@ -1,0 +1,17 @@
+rules:
+- resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+rules:
+- resources:
+  - deployments
+  - deploymentconfigs
+  verbs:
+  - update
+  - patch
+  - get
+  - list
+  - watch

@@ -1,0 +1,8 @@
+metadata:
+  name: configmapcontroller
+roleRef:
+  name: configmapcontroller
+  namespace: ${NAMESPACE}
+subjects:
+- kind: ServiceAccount
+  name: configmapcontroller
