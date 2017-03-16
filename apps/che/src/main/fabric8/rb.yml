@@ -1,9 +1,7 @@
 metadata:
   name: che
 roleRef:
-  name: che
+  name: admin
 subjects:
 - kind: ServiceAccount
   name: che
-roleRef:
-  name: admin
