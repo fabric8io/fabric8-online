@@ -159,3 +159,12 @@ oc new-project fabric8-saas
 cd ../fabric8-online-platform-minimal
 oc process -f target/classes/META-INF/fabric8/openshift.yml -v NAMESPACE=fabric8-saas  | oc apply -f -
 ```
+
+#### adding the roles so the developer can use the new projects
+
+oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-run
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-run
+oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-test
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-test
+oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-stage
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-stage
