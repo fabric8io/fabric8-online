@@ -26,15 +26,13 @@ deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
 
           # commmented out until we can create projects 
           #oc new-project ${prj}
-          oc process -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -v PROJECT_NAME=${prj}  -v PROJECT_ADMIN_USER=${user}  -v PROJECT_REQUESTING_USER=${user} | oc apply -f -
+          oc process -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -v PROJECT_NAME=${prj}  -v PROJECT_ADMIN_USER=${user}  -v PROJECT_REQUESTING_USER=${user} | oc apply -n ${prj} -f -
 
           echo "now populating the che namespace: ${prj}-che"
-          oc project ${prj}-che
-          oc apply -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-che/${releaseVersion}/fabric8-online-che-${releaseVersion}-openshift.yml
+          oc apply -n ${prj}-che -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-che/${releaseVersion}/fabric8-online-che-${releaseVersion}-openshift.yml 
                    
           echo "now populating the jenkins namespace: ${prj}-jenkins"
-          oc project ${prj}-jenkins
-          oc process -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-jenkins/${releaseVersion}/fabric8-online-jenkins-${releaseVersion}-openshift.yml -v PROJECT_USER=${user} | oc apply -f -
+          oc process -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-jenkins/${releaseVersion}/fabric8-online-jenkins-${releaseVersion}-openshift.yml -v PROJECT_USER=${user} | oc apply -n ${prj}-jenkins -f -
                    
 
           """
