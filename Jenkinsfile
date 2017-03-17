@@ -1,7 +1,7 @@
 #!/usr/bin/groovy
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def releaseVersion
-deployOpenShiftTemplate{
+deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
   mavenNode {
     ws{
       try {
@@ -16,7 +16,7 @@ deployOpenShiftTemplate{
         releaseVersion = stagedProject[1]
 
         stage 'Deploy to OpenShift'
-        def prj = "online-tenant-${env.BUILD_NUMBER}"
+        def prj = "cd-tenant"
         def user = "rhn-support-jrawling"
         echo "using project: ${prj} and user: ${user}"
 
@@ -45,12 +45,11 @@ deployOpenShiftTemplate{
             try{
               sh "oc get pod -l project=jenkins-openshift,provider=fabric8 -n ${prj} | grep Running"
               sh "oc get pod -l project=content-repository,provider=fabric8 -n ${prj} | grep Running"
-              // che wont start yet as needs the SCC but not for long
-              //sh "oc get pod -l project=che,provider=fabric8 -n ${prj} | grep Running"
-              echo "Jenkins and Content Repository pods Running for v ${releaseVersion}"
+              sh "oc get pod -l project=che,provider=fabric8 -n ${prj} | grep Running"
+              echo "Jenkins, Che and Content Repository pods Running for v ${releaseVersion}"
               return true
             } catch (err) {
-              echo "waiting for Jenkins and Content Repository to be ready..."
+              echo "waiting for Jenkins, Che and Content Repository to be ready..."
               return false
             }
           }
