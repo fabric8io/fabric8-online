@@ -23,7 +23,9 @@ deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
         container(name: 'clients') {
           stage "Applying ${releaseVersion} updates"
           sh """
-          oc new-project ${prj}
+
+          # commmented out until we can create projects 
+          #oc new-project ${prj}
           oc process -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -v PROJECT_NAME=${prj}  -v PROJECT_ADMIN_USER=${user}  -v PROJECT_REQUESTING_USER=${user} | oc apply -f -
 
           echo "now populating the che namespace: ${prj}-che"
