@@ -77,8 +77,7 @@
     <fabric8.ipaas.version>2.2.168</fabric8.ipaas.version>
     <fabric8-runtime-console.version>1.0.15</fabric8-runtime-console.version>
     <fabric8-ui.version>latest</fabric8-ui.version>
-    <image.registry>registry.devshift.net</image.registry>
-    <image.organisation>fabric8io</image.organisation>
+    <fabric8-ui.image.name>registry.devshift.net/fabric8io/fabric8-ui</fabric8-ui.image.name>
     <platform.version>2.4.19</platform.version>
     <funktion-connectors.version>1.1.42</funktion-connectors.version>
     <funktion.version>1.0.6</funktion.version>
