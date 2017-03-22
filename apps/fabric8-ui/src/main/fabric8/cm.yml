@@ -1,0 +1,10 @@
+data:
+  ws_k8s_api_server: "tsrv.devshift.net:8443"
+  k8s_api_server_protocol: "http"
+  k8s_api_server_base_path: "/_p/oso"
+  oauth_issuer: "https://tsrv.devshift.net:8443"
+  oauth_client_id: "fabric8"
+  oauth_scope: "user:full"
+  oauth_authorize_uri: "https://tsrv.devshift.net:8443/oauth/authorize"
+  auth_logout_uri: "https://tsrv.devshift.net:8443/connect/endsession?id_token={{id_token}}"
+  fabric8_pipelines_namespace: "-dsaas-jenkins"
