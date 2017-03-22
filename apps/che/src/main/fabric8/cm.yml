@@ -9,3 +9,4 @@ data:
   docker-connector: "openshift"
   port: "8080"
   remote-debugging-enabled: "false"
+  che-oauth-github-forceactivation: "true"
