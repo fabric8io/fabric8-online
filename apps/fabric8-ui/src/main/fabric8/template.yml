@@ -18,3 +18,5 @@ parameters:
   value: "https://tsrv.devshift.net:8443/connect/endsession?id_token={{id_token}}"
 - name: FABRIC8_PIPELINES_NAMESPACE
   value: "-jenkins"
+- name: IMAGE_NAME
+  value: ${fabric8-ui.image.name}:${fabric8-ui.version}
