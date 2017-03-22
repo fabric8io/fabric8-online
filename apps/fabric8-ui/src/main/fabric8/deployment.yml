@@ -5,50 +5,23 @@ spec:
       containers:
       - env:
         - name: "WS_K8S_API_SERVER"
-          valueFrom:
-            configMapKeyRef:
-              key: "ws_k8s_api_server"
-              name: "fabric8-ui"
+          value: ${WS_K8S_API_SERVER}
         - name: "K8S_API_SERVER_PROTOCOL"
-          valueFrom:
-            configMapKeyRef:
-              key: "k8s_api_server_protocol"
-              name: "fabric8-ui"
+          value: ${K8S_API_SERVER_PROTOCOL}
         - name: "K8S_API_SERVER_BASE_PATH"
-          valueFrom:
-            configMapKeyRef:
-              key: "k8s_api_server_base_path"
-              name: "fabric8-ui"
+          value: ${K8S_API_SERVER_BASE_PATH}
         - name: "OAUTH_ISSUER"
-          valueFrom:
-            configMapKeyRef:
-              key: "oauth_issuer"
-              name: "fabric8-ui"
+          value: ${OAUTH_ISSUER}
         - name: "OAUTH_CLIENT_ID"
-          valueFrom:
-            configMapKeyRef:
-              key: "oauth_client_id"
-              name: "fabric8-ui"
+          value: ${OAUTH_CLIENT_ID}
         - name: "OAUTH_SCOPE"
-          valueFrom:
-            configMapKeyRef:
-              key: "oauth_scope"
-              name: "fabric8-ui"
+          value: ${OAUTH_SCOPE}
         - name: "OAUTH_AUTHORIZE_URI"
-          valueFrom:
-            configMapKeyRef:
-              key: "oauth_authorize_uri"
-              name: "fabric8-ui"
+          value: ${OAUTH_AUTHORIZE_URI}
         - name: "AUTH_LOGOUT_URI"
-          valueFrom:
-            configMapKeyRef:
-              key: "auth_logout_uri"
-              name: "fabric8-ui"
+          value: ${AUTH_LOGOUT_URI}
         - name: "FABRIC8_PIPELINES_NAMESPACE"
-          valueFrom:
-            configMapKeyRef:
-              key: "fabric8_pipelines_namespace"
-              name: "fabric8-ui"
+          value: ${FABRIC8_PIPELINES_NAMESPACE}
         image: "${image.registry}/${image.organisation}/fabric8-ui:${fabric8-ui.version}"
         imagePullPolicy: "IfNotPresent"
         ports:
