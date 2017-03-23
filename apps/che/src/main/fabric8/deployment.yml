@@ -60,6 +60,11 @@ spec:
             configMapKeyRef:
               key: "remote-debugging-enabled"
               name: "che"
+        - name: "CHE_OAUTH_GITHUB_FORCEACTIVATION"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-oauth-github-forceactivation"
+              name: "che"
         image: "rhche/che-server:cda3edc"
         imagePullPolicy: "IfNotPresent"
         name: che
