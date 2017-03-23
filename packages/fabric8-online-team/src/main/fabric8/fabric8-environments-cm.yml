@@ -4,6 +4,7 @@ metadata:
   name: fabric8-environments
   labels:
     kind: environments
+    provider: fabric8
   annotations:
     description: Defines the environments used by your Continuous Delivery pipelines.
     fabric8.console/iconUrl: https://cdn.rawgit.com/fabric8io/fabric8-console/master/app-kubernetes/src/main/fabric8/icon.svg
