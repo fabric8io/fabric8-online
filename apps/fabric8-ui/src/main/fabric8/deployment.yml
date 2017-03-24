@@ -22,7 +22,7 @@ spec:
           value: ${AUTH_LOGOUT_URI}
         - name: "FABRIC8_PIPELINES_NAMESPACE"
           value: ${FABRIC8_PIPELINES_NAMESPACE}
-        image: "${IMAGE_NAME}"
+        image: "${fabric8-ui.image.name}:${fabric8-ui.version}"
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 8080
