@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: jenkins-edit
+  namespace: ${PROJECT_NAME}
+roleRef:
+  name: edit
+subjects:
+- kind: ServiceAccount
+  name: jenkins
+userNames:
+- system:serviceaccount:${PROJECT_NAME}-jenkins:jenkins
