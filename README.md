@@ -139,11 +139,11 @@ mvn install
 ```
 oc login -u system:admin
 cd packages/fabric8-online-team
-oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_NAME=myproject  -v PROJECT_ADMIN_USER=developer  -v PROJECT_REQUESTING_USER=system:admin | oc apply -f -
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_NAME=myproject  -v PROJECT_ADMIN_USER=`oc whoami`  -v PROJECT_REQUESTING_USER=`oc whoami` | oc apply -f -
 
 cd ../fabric8-online-jenkins
 oc project myproject-jenkins
-oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=developer  | oc apply -f -
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=`oc whoami`  | oc apply -f -
 gofabric8 volumes
 
 cd ../fabric8-online-che
