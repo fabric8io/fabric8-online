@@ -143,7 +143,7 @@ oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_NAME=mypr
 
 cd ../fabric8-online-jenkins
 oc project myproject-jenkins
-oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=`oc whoami`  | oc apply -f -
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=`oc whoami` -v PROJECT_NAMESPACE=myproject | oc apply -f -
 gofabric8 volumes
 
 cd ../fabric8-online-che
