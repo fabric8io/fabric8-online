@@ -162,6 +162,10 @@ oc process -f target/classes/META-INF/fabric8/openshift.yml -v NAMESPACE=fabric8
 
 #### adding the roles so the developer can use the new projects
 
+export PROJECT_NAME=myproject
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME
+oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-jenkins
 oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-run
 oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-run
 oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-test
