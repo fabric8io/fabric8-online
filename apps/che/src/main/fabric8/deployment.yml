@@ -65,6 +65,31 @@ spec:
             configMapKeyRef:
               key: "che-oauth-github-forceactivation"
               name: "che"
+        - name: "CHE_OPENSHIFT_WORKSPACE_MEMORY_OVERRIDE"
+          valueFrom:
+            configMapKeyRef:
+              key: "workspaces-memory-limit"
+              name: "che"
+        - name: "CHE_OPENSHIFT_WORKSPACE_MEMORY_REQUEST"
+          valueFrom:
+            configMapKeyRef:
+              key: "workspaces-memory-request"
+              name: "che"
+        - name: "CHE_WORKSPACE_AUTO_START"
+          valueFrom:
+            configMapKeyRef:
+              key: "enable-workspaces-autostart"
+              name: "che"
+        - name: "JAVA_OPTS"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-server-java-opts"
+              name: "che"
+        - name: "CHE_WORKSPACE_JAVA_OPTIONS"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-workspaces-java-opts"
+              name: "che"
         image: "rhche/che-server:cda3edc"
         imagePullPolicy: "IfNotPresent"
         name: che
@@ -78,22 +103,21 @@ spec:
             port: 8080
           initialDelaySeconds: 120
           timeoutSeconds: 10
+        resources:
+          limits:
+            memory: 1Gi
+          requests:
+            memory: 256Mi
         ports:
         - containerPort: 8080
           name: "http"
         - containerPort: 8000
           name: "http-debug"
         volumeMounts:
-        - mountPath: "/conf"
-          name: "che-conf-volume"
-          readOnly: false
         - mountPath: "/data"
           name: "che-data-volume"
       serviceAccountName: "che"
       volumes:
-      - name: che-conf-volume
-        persistentVolumeClaim:
-          claimName: che-conf-volume
       - name: che-data-volume
         persistentVolumeClaim:
           claimName: che-data-volume
