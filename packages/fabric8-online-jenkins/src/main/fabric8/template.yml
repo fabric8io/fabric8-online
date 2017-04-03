@@ -3,4 +3,3 @@ parameters:
 - name: PROJECT_USER
   value: developer
 - name: PROJECT_NAMESPACE
-
