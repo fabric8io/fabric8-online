@@ -9,10 +9,10 @@ spec:
       memory: "700Mi"
     min:
       cpu: "17m"
-      memory: "90Mi"
+      memory: "60Mi"
     type: Pod
   - default:
-      cpu: "1"
+      cpu: "250m"
       memory: 512Mi
     defaultRequest:
       cpu: 60m
@@ -22,7 +22,7 @@ spec:
       memory: 700Mi
     min:
       cpu: 17m
-      memory: 90Mi
+      memory: 60Mi
     type: Container
   - max:
       storage: 1Gi
