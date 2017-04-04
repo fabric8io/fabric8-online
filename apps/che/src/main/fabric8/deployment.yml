@@ -90,7 +90,17 @@ spec:
             configMapKeyRef:
               key: "che-workspaces-java-opts"
               name: "che"
-        image: "rhche/che-server:e52a5a1"
+        - name: "CHE_OPENSHIFT_SECURE_ROUTES"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-openshift-secure-routes"
+              name: "che"
+        - name: "CHE_DOCKER_SERVER__EVALUATION__STRATEGY_SECURE_EXTERNAL_URLS"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-secure-external-urls"
+              name: "che"
+        image: "rhche/che-server:56777e8"
         imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
