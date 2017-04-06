@@ -137,8 +137,9 @@ mvn install
 #### create a user/team set of environments and services
 
 ```
-oc login -u system:admin
 cd packages/fabric8-online-team
+oc login -u system:admin
+oc new-project myproject
 oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_NAME=myproject  -v PROJECT_ADMIN_USER=`oc whoami`  -v PROJECT_REQUESTING_USER=`oc whoami` | oc apply -f -
 
 cd ../fabric8-online-jenkins
@@ -147,7 +148,7 @@ oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=`oc 
 gofabric8 volumes
 
 cd ../fabric8-online-che
-oc project myproject-che                   e
+oc project myproject-che   
 oc apply -f target/classes/META-INF/fabric8/openshift.yml
 gofabric8 volumes
 ```
@@ -162,9 +163,15 @@ oc process -f target/classes/META-INF/fabric8/openshift.yml -v NAMESPACE=fabric8
 
 #### adding the roles so the developer can use the new projects
 
+```bash
+export PROJECT_NAME=myproject
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME
+oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME
+oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-jenkins
 oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-run
 oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-run
 oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-test
 oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-test
 oc adm policy add-role-to-user edit developer --namespace $PROJECT_NAME-stage
 oc adm policy add-role-to-user view developer --namespace $PROJECT_NAME-stage
+```
