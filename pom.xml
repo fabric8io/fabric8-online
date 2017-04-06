@@ -73,7 +73,7 @@
     <fabric8.version>2.2.157</fabric8.version>
     <fabric8.console.version>2.2.199</fabric8.console.version>
     <fabric8.devops.version>2.2.331</fabric8.devops.version>
-    <fabric8-team-components.version>3.0.5</fabric8-team-components.version>
+    <fabric8-team-components.version>3.0.6</fabric8-team-components.version>
     <fabric8.forge.version>2.3.88</fabric8.forge.version>
     <fabric8.ipaas.version>2.2.168</fabric8.ipaas.version>
     <fabric8-runtime-console.version>1.0.15</fabric8-runtime-console.version>
