@@ -100,7 +100,7 @@ spec:
             configMapKeyRef:
               key: "che-secure-external-urls"
               name: "che"
-        image: "rhche/che-server:8d770b6"
+        image: "rhche/che-server:ee3cbe0"
         imagePullPolicy: "IfNotPresent"
         name: che
         readinessProbe:
