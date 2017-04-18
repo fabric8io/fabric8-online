@@ -37,6 +37,11 @@
       <artifactId>che</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>io.fabric8.online.apps</groupId>
+      <artifactId>bayesian-link</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

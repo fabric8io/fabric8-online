@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: RoleBinding
 metadata:
-  name: view
+  name: edit
+  namespace: ${PROJECT_NAME}-jenkins
 roleRef:
-  name: view
+  name: edit
 subjects:
 - kind: User
   name: ${PROJECT_USER}

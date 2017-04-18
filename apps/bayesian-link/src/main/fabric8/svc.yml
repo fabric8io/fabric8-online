@@ -3,6 +3,6 @@ metadata:
     expose: false
 spec:
   type: ExternalName
-  externalName: ${EXTERNAL_NAME}
+  externalName: ${RECOMMENDER_EXTERNAL_NAME}
   ports:
-  - port: ${bayesian.port}
+  - port: 80
