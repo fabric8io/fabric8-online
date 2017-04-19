@@ -1,82 +1,90 @@
 #!/usr/bin/groovy
 @Library('github.com/fabric8io/fabric8-pipeline-library@master')
 def releaseVersion
+def utils = new io.fabric8.Utils()
 deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
   mavenNode {
     ws{
       try {
         checkout scm
         readTrusted 'release.groovy'
-        sh "git remote set-url origin git@github.com:fabric8io/fabric8-online.git"
 
-        def pipeline = load 'release.groovy'
+          if (utils.isCI()){
 
-        stage 'Stage'
-        def stagedProject = pipeline.stage()
-        releaseVersion = stagedProject[1]
+            echo 'CI is not handled by pipelines yet'
 
-        // stage 'Deploy to OpenShift'
-        // def prj = "cd-tenant"
-        // def user = "rhn-support-jrawling"
-        // echo "using project: ${prj} and user: ${user}"
+          } else if (utils.isCD()){
+            sh "git remote set-url origin git@github.com:fabric8io/fabric8-online.git"
 
-        // container(name: 'clients') {
-        //   stage "Applying ${releaseVersion} updates"
-        //   sh """
+            def pipeline = load 'release.groovy'
 
-        //   # commmented out until we can create projects 
-        //   #oc new-project ${prj}
-        //   oc process -n ${prj} -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -v PROJECT_NAME=${prj}  -v PROJECT_ADMIN_USER=${user}  -v PROJECT_REQUESTING_USER=${user} | oc apply -n ${prj} -f -
+            stage 'Stage'
+            def stagedProject = pipeline.stage()
+            releaseVersion = stagedProject[1]
 
-        //   echo "now populating the che namespace: ${prj}-che"
-        //   oc apply -n ${prj}-che -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-che/${releaseVersion}/fabric8-online-che-${releaseVersion}-openshift.yml 
-                   
-        //   echo "now populating the jenkins namespace: ${prj}-jenkins"
-        //   oc process -n ${prj}-jenkins -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-jenkins/${releaseVersion}/fabric8-online-jenkins-${releaseVersion}-openshift.yml -v PROJECT_USER=${user} | oc apply -n ${prj}-jenkins -f -
-                   
+            // stage 'Deploy to OpenShift'
+            // def prj = "cd-tenant"
+            // def user = "rhn-support-jrawling"
+            // echo "using project: ${prj} and user: ${user}"
 
-        //   """
-        //   sh " -n ${prj}"
+            // container(name: 'clients') {
+            //   stage "Applying ${releaseVersion} updates"
+            //   sh """
 
-        //   sleep 20 // ok bad bad but there's a delay between DC's being applied and new pods being started.  lets find a better way to do this looking at teh new DC perhaps?
+            //   # commmented out until we can create projects 
+            //   #oc new-project ${prj}
+            //   oc process -n ${prj} -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-team/${releaseVersion}/fabric8-online-team-${releaseVersion}-openshift.yml -v PROJECT_NAME=${prj}  -v PROJECT_ADMIN_USER=${user}  -v PROJECT_REQUESTING_USER=${user} | oc apply -n ${prj} -f -
 
-        //   waitUntil{
-        //     // wait until the pods are running has been deleted
-        //     try{
-        //       sh "oc get pod -l project=jenkins-openshift,provider=fabric8 -n ${prj} | grep Running"
-        //       sh "oc get pod -l project=content-repository,provider=fabric8 -n ${prj} | grep Running"
-        //       sh "oc get pod -l project=che,provider=fabric8 -n ${prj} | grep Running"
-        //       echo "Jenkins, Che and Content Repository pods Running for v ${releaseVersion}"
-        //       return true
-        //     } catch (err) {
-        //       echo "waiting for Jenkins, Che and Content Repository to be ready..."
-        //       return false
-        //     }
-        //   }
-        //   def routes = sh(script: "oc get routes -n ${prj}", returnStdout: true).toString().trim()
-        //   def msg = """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
-        //   ${routes}
-        //   """
-        //   hubot room: 'release', message: msg
+            //   echo "now populating the che namespace: ${prj}-che"
+            //   oc apply -n ${prj}-che -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-che/${releaseVersion}/fabric8-online-che-${releaseVersion}-openshift.yml 
+                      
+            //   echo "now populating the jenkins namespace: ${prj}-jenkins"
+            //   oc process -n ${prj}-jenkins -f https://oss.sonatype.org/content/repositories/staging/io/fabric8/online/packages/fabric8-online-jenkins/${releaseVersion}/fabric8-online-jenkins-${releaseVersion}-openshift.yml -v PROJECT_USER=${user} | oc apply -n ${prj}-jenkins -f -
+                      
 
-        //   stage "Trigger sample build"
-        //   sh "oc start-build spring-boot-webmvc-jr --wait -n ${prj}"
-            
-        // }
+            //   """
+            //   sh " -n ${prj}"
 
-        // stage 'Approve'
-        // pipeline.approve(stagedProject)
+            //   sleep 20 // ok bad bad but there's a delay between DC's being applied and new pods being started.  lets find a better way to do this looking at teh new DC perhaps?
 
-        stage 'Promote'
-        pipeline.release(stagedProject)
+            //   waitUntil{
+            //     // wait until the pods are running has been deleted
+            //     try{
+            //       sh "oc get pod -l project=jenkins-openshift,provider=fabric8 -n ${prj} | grep Running"
+            //       sh "oc get pod -l project=content-repository,provider=fabric8 -n ${prj} | grep Running"
+            //       sh "oc get pod -l project=che,provider=fabric8 -n ${prj} | grep Running"
+            //       echo "Jenkins, Che and Content Repository pods Running for v ${releaseVersion}"
+            //       return true
+            //     } catch (err) {
+            //       echo "waiting for Jenkins, Che and Content Repository to be ready..."
+            //       return false
+            //     }
+            //   }
+            //   def routes = sh(script: "oc get routes -n ${prj}", returnStdout: true).toString().trim()
+            //   def msg = """${env.JOB_NAME} v${releaseVersion} Deployed and ready for QA:
+            //   ${routes}
+            //   """
+            //   hubot room: 'release', message: msg
 
-        // stage 'Tear down Test'
-        // sh """
-        //   oc delete project ${prj} ${prj}-jenkins ${prj}-che ${prj}-test ${prj}-stage ${prj}-run 
-        // """
-      } catch (err){
-          hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
-          error "${err}"
+            //   stage "Trigger sample build"
+            //   sh "oc start-build spring-boot-webmvc-jr --wait -n ${prj}"
+                
+            // }
+
+            // stage 'Approve'
+            // pipeline.approve(stagedProject)
+
+            stage 'Promote'
+            pipeline.release(stagedProject)
+
+            // stage 'Tear down Test'
+            // sh """
+            //   oc delete project ${prj} ${prj}-jenkins ${prj}-che ${prj}-test ${prj}-stage ${prj}-run 
+            // """
+          } catch (err){
+              hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
+              error "${err}"
+          }
       }
     }
   }
