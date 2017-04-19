@@ -81,11 +81,11 @@ deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
             // sh """
             //   oc delete project ${prj} ${prj}-jenkins ${prj}-che ${prj}-test ${prj}-stage ${prj}-run 
             // """
-          } catch (err){
-              hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
-              error "${err}"
           }
-      }
+        } catch (err){
+            hubot room: 'release', message: "${env.JOB_NAME} failed: ${err}"
+            error "${err}"
+        }      
     }
   }
 }
