@@ -1,0 +1,10 @@
+ metadata:
+   name: jenkins-view
+   namespace: ${PROJECT_NAME}-run
+ roleRef:
+   name: view
+ subjects:
+ - kind: ServiceAccount
+   name: jenkins
+ userNames:
+ - system:serviceaccount:${PROJECT_NAME}-jenkins:jenkins

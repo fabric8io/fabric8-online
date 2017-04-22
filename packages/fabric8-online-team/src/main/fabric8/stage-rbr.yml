@@ -1,0 +1,8 @@
+kind: RoleBindingRestriction
+metadata:
+  name: dsaas-user-access
+  namespace: ${PROJECT_NAME}-stage
+spec: 
+  userrestriction:
+    users:
+    - ${PROJECT_USER}

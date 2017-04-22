@@ -1,0 +1,9 @@
+metadata:
+  name: useradmin
+roleRef:
+  name: admin
+subjects:
+- kind: User
+  name: ${PROJECT_USER}
+userNames:
+- ${PROJECT_USER}

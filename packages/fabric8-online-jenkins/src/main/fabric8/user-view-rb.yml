@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: view
+  namespace: ${PROJECT_NAME}-jenkins
+roleRef:
+  name: view
+subjects:
+- kind: User
+  name: ${PROJECT_USER}
+userNames:
+- ${PROJECT_USER}

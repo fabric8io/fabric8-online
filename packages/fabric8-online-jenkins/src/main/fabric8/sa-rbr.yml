@@ -1,0 +1,7 @@
+kind: RoleBindingRestriction
+metadata:
+  name: dsaas-access-sa-ns
+spec: 
+  serviceaccountrestriction:
+    namespaces: 
+    - ${PROJECT_NAME}-jenkins

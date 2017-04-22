@@ -149,7 +149,7 @@ gofabric8 volumes
 
 cd ../fabric8-online-che
 oc project myproject-che   
-oc apply -f target/classes/META-INF/fabric8/openshift.yml
+oc process -f target/classes/META-INF/fabric8/openshift.yml -v PROJECT_USER=`oc whoami` -v PROJECT_NAMESPACE=myproject | oc apply -f -
 gofabric8 volumes
 ```
 

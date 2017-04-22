@@ -1,7 +1,7 @@
 metadata:
-  name: view-cd-bot
+  name: edit-jenkins
 subjects:
 - kind: ServiceAccount
-  name: cd-bot
+  name: jenkins
 roleRef:
-  name: view
+  name: edit

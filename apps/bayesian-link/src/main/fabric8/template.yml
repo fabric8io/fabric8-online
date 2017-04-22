@@ -1,4 +1,4 @@
 kind: Template
 parameters:
-- name: EXTERNAL_NAME
+- name: RECOMMENDER_EXTERNAL_NAME
   value: recommender.api.prod-preview.openshift.io
