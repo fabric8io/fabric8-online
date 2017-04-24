@@ -74,5 +74,26 @@ def approve(project){
   approveReceivedEvent(id: id, approved: true)
 }
 
+def updateInitService(releaseVersion){
+  container(name: 'clients') {
 
+    sh 'chmod 600 /root/.ssh-git/ssh-key'
+    sh 'chmod 600 /root/.ssh-git/ssh-key.pub'
+    sh 'chmod 700 /root/.ssh-git'
+
+    git 'git@github.com:fabric8io/fabric8-init-tenant.git'
+
+    sh "git config user.email fabric8cd@googlegroups.com"
+    sh "git config user.name fabric8-cd"
+
+    def uid = UUID.randomUUID().toString()
+    sh "git checkout -b versionUpdate${uid}"
+
+    sh "echo ${releaseVersion} > TEAM_VERSION"
+    def message = "Update fabric8-online version to ${releaseVersion}"
+    sh "git commit -a -m ${message}"
+    sh "git push origin versionUpdate${uid}"
+    flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
+  }
+}
 return this;
