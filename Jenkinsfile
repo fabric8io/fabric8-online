@@ -17,10 +17,12 @@ deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
             sh "git remote set-url origin git@github.com:fabric8io/fabric8-online.git"
 
             def pipeline = load 'release.groovy'
+            def stagedProject
 
-            stage 'Stage'
-            def stagedProject = pipeline.stage()
-            releaseVersion = stagedProject[1]
+            stage ('Stage'){
+              stagedProject = pipeline.stage()
+              releaseVersion = stagedProject[1]
+            }
 
             // stage 'Deploy to OpenShift'
             // def prj = "cd-tenant"
@@ -74,9 +76,13 @@ deployOpenShiftTemplate(openshiftConfigSecretName: 'devshift-config'){
             // stage 'Approve'
             // pipeline.approve(stagedProject)
 
-            stage 'Promote'
-            pipeline.release(stagedProject)
+            stage ('Promote'){
+              pipeline.release(stagedProject)
+            }
 
+            stage ('PR on init service'){
+              pipeline.updateInitService(releaseVersion)
+            }
             // stage 'Tear down Test'
             // sh """
             //   oc delete project ${prj} ${prj}-jenkins ${prj}-che ${prj}-test ${prj}-stage ${prj}-run 
