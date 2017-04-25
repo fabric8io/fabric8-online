@@ -91,7 +91,7 @@ def updateInitService(releaseVersion){
 
     sh "echo ${releaseVersion} > TEAM_VERSION"
     def message = "Update fabric8-online version to ${releaseVersion}"
-    sh "git commit -a -m ${message}"
+    sh "git commit -a -m \"${message}\""
     sh "git push origin versionUpdate${uid}"
     flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
   }
