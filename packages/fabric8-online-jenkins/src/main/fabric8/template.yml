@@ -5,3 +5,4 @@ parameters:
 - name: PROJECT_NAMESPACE
 - name: RECOMMENDER_EXTERNAL_NAME
   value: recommender.api.prod-preview.openshift.io
+- name: RECOMMENDER_API_TOKEN
