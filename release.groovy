@@ -76,7 +76,7 @@ def approve(project){
 
 def updateInitService(releaseVersion){
   container(name: 'clients') {
-
+    def flow = new io.fabric8.Fabric8Commands()
     sh 'chmod 600 /root/.ssh-git/ssh-key'
     sh 'chmod 600 /root/.ssh-git/ssh-key.pub'
     sh 'chmod 700 /root/.ssh-git'
