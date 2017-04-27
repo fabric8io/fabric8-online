@@ -83,7 +83,7 @@ def updateInitService(releaseVersion){
 
     git 'git@github.com:fabric8io/fabric8-init-tenant.git'
 
-    sh "git config user.email fabric8cd@googlegroups.com"
+    sh "git config user.email fabric8cd@gmail.com"
     sh "git config user.name fabric8-cd"
 
     def uid = UUID.randomUUID().toString()
