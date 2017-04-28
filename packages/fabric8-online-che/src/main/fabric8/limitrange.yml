@@ -5,8 +5,8 @@ metadata:
 spec:
   limits:
   - max:
-      cpu: "2930m"
-      memory: "1500Mi"
+      cpu: "4880m"
+      memory: "2500Mi"
     min:
       cpu: "29m"
       memory: "150Mi"
@@ -18,8 +18,8 @@ spec:
       cpu: 60m
       memory: 307Mi
     max:
-      cpu: "2930m"
-      memory: 1500Mi
+      cpu: "4880m"
+      memory: 2500Mi
     min:
       cpu: 29m
       memory: 150Mi
