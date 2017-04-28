@@ -17,4 +17,4 @@ data:
   che-workspaces-java-opts: "-XX:+UseSerialGC -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:MaxRAM=1300m -Xms256m -XX:+UseCGroupLimits"
   che-openshift-secure-routes: "true"
   che-secure-external-urls: "true"
-  
+  che-server-timeout-ms: "0"

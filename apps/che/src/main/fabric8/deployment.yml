@@ -100,6 +100,11 @@ spec:
             configMapKeyRef:
               key: "che-secure-external-urls"
               name: "che"
+        - name: "CHE_OPENSHIFT_SERVER_INACTIVE_STOP_TIMEOUT_MS"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-server-timeout-ms"
+              name: "che"
         image: "rhche/che-server:${che-server.version}"
         imagePullPolicy: "IfNotPresent"
         name: che
