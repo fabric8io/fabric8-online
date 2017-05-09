@@ -18,3 +18,4 @@ data:
   che-openshift-secure-routes: "true"
   che-secure-external-urls: "true"
   che-server-timeout-ms: "0"
+  che-openshift-precreate-subpaths: "false"

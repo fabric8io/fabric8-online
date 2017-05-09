@@ -105,6 +105,11 @@ spec:
             configMapKeyRef:
               key: "che-server-timeout-ms"
               name: "che"
+        - name: "CHE_OPENSHIFT_PRECREATE_WORKSPACE_DIRS"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-openshift-precreate-subpaths"
+              name: "che"
         image: "rhche/che-server:${che-server.version}"
         imagePullPolicy: "IfNotPresent"
         name: che
