@@ -17,5 +17,5 @@ data:
   che-workspaces-java-opts: "-XX:+UseG1GC -XX:+UseStringDeduplication -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:MaxRAM=1300m -Xms256m"
   che-openshift-secure-routes: "true"
   che-secure-external-urls: "true"
-  che-server-timeout-ms: "0"
+  che-server-timeout-ms: "3600000"
   che-openshift-precreate-subpaths: "false"
