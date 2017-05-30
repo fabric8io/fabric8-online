@@ -13,6 +13,8 @@ data:
   workspaces-memory-limit: "2300Mi"
   workspaces-memory-request: "1500Mi"
   enable-workspaces-autostart: "false"
+  keycloak-oso-endpoint: "https://sso.openshift.io/auth/realms/fabric8/broker/openshift-v3/token"
+  keycloak-github-endpoint: "https://sso.openshift.io/auth/realms/fabric8/broker/github/token"
   che-server-java-opts: "-XX:+UseG1GC -XX:+UseStringDeduplication -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:MaxRAM=700m -Xms256m"
   che-workspaces-java-opts: "-XX:+UseG1GC -XX:+UseStringDeduplication -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:MaxRAM=1300m -Xms256m"
   che-openshift-secure-routes: "true"
