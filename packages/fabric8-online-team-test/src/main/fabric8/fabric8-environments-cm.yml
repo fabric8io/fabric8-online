@@ -11,7 +11,7 @@ metadata:
 data:
   test: |-
     name: Test
-    namespace: ${PROJECT_NAME}
+    namespace: ${PROJECT_NAME}-test
     order: 0
   stage: |-
     name: Stage
