@@ -2,7 +2,7 @@ apiVersion: v1
 kind: RoleBinding
 metadata:
   name: useradmin
-  namespace: ${PROJECT_NAME}-test
+  namespace: ${PROJECT_NAMESPACE}-test
 roleRef:
   name: admin
 subjects:

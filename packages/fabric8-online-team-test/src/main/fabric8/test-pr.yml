@@ -5,4 +5,4 @@ metadata:
     openshift.io/description: ${PROJECT_DESCRIPTION} Test Environment
     openshift.io/display-name: ${PROJECT_DISPLAYNAME} Test
     openshift.io/requester: ${PROJECT_REQUESTING_USER}
-  name: ${PROJECT_NAME}-test
+  name: ${PROJECT_NAMESPACE}-test

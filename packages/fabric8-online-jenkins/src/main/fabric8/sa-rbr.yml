@@ -4,4 +4,4 @@ metadata:
 spec: 
   serviceaccountrestriction:
     namespaces: 
-    - ${PROJECT_NAME}-jenkins
+    - ${PROJECT_NAMESPACE}-jenkins

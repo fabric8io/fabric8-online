@@ -11,13 +11,13 @@ metadata:
 data:
   test: |-
     name: Test
-    namespace: ${PROJECT_NAME}-test
+    namespace: ${PROJECT_NAMESPACE}-test
     order: 0
   stage: |-
     name: Stage
-    namespace: ${PROJECT_NAME}-stage
+    namespace: ${PROJECT_NAMESPACE}-stage
     order: 1
   run: |-
     name: Run
-    namespace: ${PROJECT_NAME}-run
+    namespace: ${PROJECT_NAMESPACE}-run
     order: 2

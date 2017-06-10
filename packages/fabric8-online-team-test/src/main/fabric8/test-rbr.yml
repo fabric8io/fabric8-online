@@ -1,7 +1,7 @@
 kind: RoleBindingRestriction
 metadata:
   name: dsaas-user-access
-  namespace: ${PROJECT_NAME}-test
+  namespace: ${PROJECT_NAMESPACE}-test
 spec: 
   userrestriction:
     users:
