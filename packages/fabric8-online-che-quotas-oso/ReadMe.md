@@ -1,0 +1,1 @@
+defines the quotas to use with Che on OpenShift Online

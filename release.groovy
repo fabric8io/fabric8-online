@@ -81,7 +81,9 @@ def updateInitService(releaseVersion){
     sh 'chmod 600 /root/.ssh-git/ssh-key.pub'
     sh 'chmod 700 /root/.ssh-git'
 
-    git 'git@github.com:fabric8io/fabric8-init-tenant.git'
+    
+    sh 'git clone git@github.com:fabric8io/fabric8-init-tenant.git'
+    sh 'cd fabric8-init-tenant'
 
     sh "git config user.email fabric8cd@gmail.com"
     sh "git config user.name fabric8-cd"
@@ -95,7 +97,10 @@ def updateInitService(releaseVersion){
     sh "git push origin versionUpdate${uid}"
     flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
 
-    git 'git@github.com:fabric8io/gofabric8.git'
+    uid = UUID.randomUUID().toString()
+    sh "cd .."
+    sh 'git clone git@github.com:fabric8io/gofabric8.git'
+    sh "cd gofabric8"
     sh "git checkout -b versionUpdate${uid}"
 
     sh "echo ${releaseVersion} > TEAM_VERSION"

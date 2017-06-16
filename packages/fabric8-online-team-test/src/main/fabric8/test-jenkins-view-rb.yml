@@ -1,10 +1,10 @@
  metadata:
    name: jenkins-view
-   namespace: ${PROJECT_NAME}-test
+   namespace: ${PROJECT_NAMESPACE}-test
  roleRef:
    name: view
  subjects:
  - kind: ServiceAccount
    name: jenkins
  userNames:
- - system:serviceaccount:${PROJECT_NAME}-jenkins:jenkins
+ - system:serviceaccount:${PROJECT_NAMESPACE}-jenkins:jenkins

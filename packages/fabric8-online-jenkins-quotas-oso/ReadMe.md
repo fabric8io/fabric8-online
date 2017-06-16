@@ -1,0 +1,1 @@
+defines the quotas to use with Jenkins on OpenShift Online

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: RoleBinding
 metadata:
   name: edit
-  namespace: ${PROJECT_NAME}-jenkins
+  namespace: ${PROJECT_NAMESPACE}-jenkins
 roleRef:
   name: edit
 subjects:

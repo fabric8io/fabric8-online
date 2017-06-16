@@ -15,3 +15,7 @@ data:
   # to enable organisation cd branches use:
   # - github.com/orgName: master
   organisation-branch-patterns:
+
+  # to disable integration tests for CD or CI builds
+  disable-itests-cd: 'false'
+  disable-itests-ci: 'false'
