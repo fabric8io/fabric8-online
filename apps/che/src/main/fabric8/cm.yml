@@ -21,3 +21,4 @@ data:
   che-secure-external-urls: "true"
   che-server-timeout-ms: "3600000"
   che-openshift-precreate-subpaths: "false"
+  che-workspace-auto-snapshot: "false"
