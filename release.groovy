@@ -99,7 +99,7 @@ def updateInitService(releaseVersion){
       sh "git push origin versionUpdate${uid}"
 
       def prId = flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
-      flow.mergePR(message,'fabric8io/fabric8-init-tenant',prId)
+      flow.mergePR('fabric8io/fabric8-init-tenant',prId)
     }
   }
 
@@ -124,7 +124,7 @@ def updateInitService(releaseVersion){
       sh "git push origin versionUpdate${uid}"
 
       def prId = flow.createPullRequest(message,'openshiftio/saas',"versionUpdate${uid}")
-      flow.mergePR(message,'openshiftio/saas',prId)
+      flow.mergePR('openshiftio/saas',prId)
     }
   }
 
