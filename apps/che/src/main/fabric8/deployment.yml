@@ -40,6 +40,16 @@ spec:
             configMapKeyRef:
               key: "che-server-evaluation-strategy"
               name: "che"
+        - name: "CHE_DOCKER_SERVER__EVALUATION__STRATEGY_CUSTOM_TEMPLATE"
+          valueFrom:
+            configMapKeyRef:
+              key: "che.docker.server_evaluation_strategy.custom.template"
+              name: "che"
+        - name: "CHE_DOCKER_SERVER__EVALUATION__STRATEGY_CUSTOM_EXTERNAL_PROTOCOL"
+          valueFrom:
+            configMapKeyRef:
+              key: "che.docker.server_evaluation_strategy.custom.external.protocol"
+              name: "che"
         - name: "CHE_LOG_LEVEL"
           valueFrom:
             configMapKeyRef:
