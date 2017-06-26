@@ -5,6 +5,8 @@ data:
   local-conf-dir: "/etc/conf"
   openshift-serviceaccountname: "che"
   che-server-evaluation-strategy: "single-port"
+  che.docker.server_evaluation_strategy.custom.template: "<serverName>-<if(isDevMachine)><workspaceIdWithoutPrefix><else><machineName><endif>-<externalAddress>"
+  from-literal=che.docker.server_evaluation_strategy.custom.external.protocol: "https"
   log-level: "INFO"
   docker-connector: "openshift"
   port: "8080"
