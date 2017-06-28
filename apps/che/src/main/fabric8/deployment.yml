@@ -130,6 +130,11 @@ spec:
             configMapKeyRef:
               key: "keycloak-github-endpoint"
               name: "che"
+        - name: "CHE_WORKSPACE_AUTO__SNAPSHOT"
+          valueFrom:
+            configMapKeyRef:
+              key: "che-workspace-auto-snapshot"
+              name: "che"
         image: "rhche/che-server:${che-server.version}"
         imagePullPolicy: "IfNotPresent"
         name: che
