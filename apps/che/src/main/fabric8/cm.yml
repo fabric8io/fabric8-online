@@ -7,6 +7,7 @@ data:
   che-server-evaluation-strategy: "single-port"
   che.docker.server_evaluation_strategy.custom.template: "<serverName>-<if(isDevMachine)><workspaceIdWithoutPrefix><else><machineName><endif>-<externalAddress>"
   che.docker.server_evaluation_strategy.custom.external.protocol: "https"
+  che.predefined.stacks.reload_on_start: "true"
   log-level: "INFO"
   docker-connector: "openshift"
   port: "8080"
