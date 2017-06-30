@@ -75,7 +75,6 @@ def approve(project){
 }
 
 def updateInitService(releaseVersion){
-  def initServiceGitHash
   ws{
     container(name: 'clients') {
       def flow = new io.fabric8.Fabric8Commands()
@@ -94,37 +93,10 @@ def updateInitService(releaseVersion){
       sh "echo ${releaseVersion} > TEAM_VERSION"
       def message = "Update fabric8-online version to ${releaseVersion}"
       sh "git commit -a -m \"${message}\""
-      initServiceGitHash = sh(script: 'git rev-parse HEAD', returnStdout: true).toString().trim()
-
       sh "git push origin versionUpdate${uid}"
 
       def prId = flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
       flow.mergePR('fabric8io/fabric8-init-tenant',prId)
-    }
-  }
-
-  ws{
-    container(name: 'clients') {
-      def flow = new io.fabric8.Fabric8Commands()
-      sh 'chmod 600 /root/.ssh-git/ssh-key'
-      sh 'chmod 600 /root/.ssh-git/ssh-key.pub'
-      sh 'chmod 700 /root/.ssh-git'
-
-      git 'git@github.com:openshiftio/saas.git'
-
-      sh "git config user.email fabric8cd@gmail.com"
-      sh "git config user.name fabric8-cd"
-
-      def uid = UUID.randomUUID().toString()
-      sh "git checkout -b versionUpdate${uid}"
-
-      sh "sed -i -r 's/- hash: .*/- hash: ${initServiceGitHash}/g' dsaas-services/f8-tenant.yaml"
-      def message = "Update tenants version to ${releaseVersion}"
-      sh "git commit -a -m \"${message}\""
-      sh "git push origin versionUpdate${uid}"
-
-      def prId = flow.createPullRequest(message,'openshiftio/saas',"versionUpdate${uid}")
-      flow.mergePR('openshiftio/saas',prId)
     }
   }
 
