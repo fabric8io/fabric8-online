@@ -50,6 +50,11 @@ spec:
             configMapKeyRef:
               key: "che.docker.server_evaluation_strategy.custom.external.protocol"
               name: "che"
+        - name: "CHE_PREDEFINED_STACKS_RELOAD__ON__START"
+          valueFrom:
+            configMapKeyRef:
+              key: "che.predefined.stacks.reload_on_start"
+              name: "che"
         - name: "CHE_LOG_LEVEL"
           valueFrom:
             configMapKeyRef:
