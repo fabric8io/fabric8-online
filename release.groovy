@@ -95,8 +95,8 @@ def updateInitService(releaseVersion){
       sh "git commit -a -m \"${message}\""
       sh "git push origin versionUpdate${uid}"
 
-      def prId = flow.createPullRequest(message,'fabric8io/fabric8-init-tenant',"versionUpdate${uid}")
-      flow.mergePR('fabric8io/fabric8-init-tenant',prId)
+      def prId = flow.createPullRequest(message,'fabric8-services/fabric8-tenant',"versionUpdate${uid}")
+      flow.mergePR('fabric8-services/fabric8-tenant',prId)
     }
   }
 
