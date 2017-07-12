@@ -4,7 +4,7 @@ data:
   workspace-storage-create-folders: "false"
   local-conf-dir: "/etc/conf"
   openshift-serviceaccountname: "che"
-  che-server-evaluation-strategy: "single-port"
+  che-server-evaluation-strategy: "docker-local-custom"
   che.docker.server_evaluation_strategy.custom.template: "<serverName>-<if(isDevMachine)><workspaceIdWithoutPrefix><else><machineName><endif>-<externalAddress>"
   che.docker.server_evaluation_strategy.custom.external.protocol: "https"
   che.predefined.stacks.reload_on_start: "true"
