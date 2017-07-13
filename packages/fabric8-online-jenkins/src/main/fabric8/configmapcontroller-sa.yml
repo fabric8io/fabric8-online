@@ -1,0 +1,5 @@
+kind: "ServiceAccount"
+metadata:
+  name: "configmapcontroller"
+  annotations:
+    fabric8.io/target-platform: "kubernetes"
