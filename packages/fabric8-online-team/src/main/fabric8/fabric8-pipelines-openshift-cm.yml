@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: fabric8-pipelines
   annotations:
-    fabric8.io/target-platform: "kubernetes"
+    fabric8.io/target-platform: "openshift"
 data:
   # specify job names to the pipeline kind such as:
   # - foo: CD
@@ -23,4 +23,4 @@ data:
   disable-itests-ci: 'false'
 
   # enable access to the docker socket
-  use-docker-socket: "true"
+  use-docker-socket: "false"
