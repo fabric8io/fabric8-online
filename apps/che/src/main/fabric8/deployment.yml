@@ -16,6 +16,11 @@ spec:
             configMapKeyRef:
               key: "workspace-storage"
               name: "che"
+        - name: "CHE_LOGS_DIR"
+          valueFrom:
+            configMapKeyRef:
+              key: "che.logs.dir"
+              name: "che"
         - name: "CHE_WORKSPACE_STORAGE_CREATE_FOLDERS"
           valueFrom:
             configMapKeyRef:
