@@ -5,7 +5,7 @@ metadata:
   annotations:
     fabric8.io/app-menu: development
   labels:
-    project: "${project.artifactId}"
+    app: "${project.artifactId}"
     provider: "fabric8"
     expose: "true"
   name: "planner"
@@ -16,5 +16,5 @@ spec:
     protocol: "TCP"
     targetPort: 8080
   selector:
-    project: "planner"
+    app: "planner"
     provider: "fabric8"
