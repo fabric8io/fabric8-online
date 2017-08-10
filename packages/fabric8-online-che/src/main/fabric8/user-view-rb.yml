@@ -1,7 +1,7 @@
 metadata:
-  name: useradmin
+  name: user-view
 roleRef:
-  name: admin
+  name: view
 subjects:
 - kind: User
   name: ${PROJECT_USER}

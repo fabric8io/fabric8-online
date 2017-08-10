@@ -1,10 +1,8 @@
-apiVersion: v1
-kind: RoleBinding
 metadata:
-  name: useradmin
+  name: user-view
   namespace: ${PROJECT_NAME}-run
 roleRef:
-  name: admin
+  name: view
 subjects:
 - kind: User
   name: ${PROJECT_USER}
