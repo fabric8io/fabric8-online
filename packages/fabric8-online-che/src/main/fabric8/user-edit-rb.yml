@@ -1,8 +1,7 @@
 metadata:
-  name: user-view
-  namespace: ${PROJECT_NAME}
+  name: user-edit
 roleRef:
-  name: view
+  name: edit
 subjects:
 - kind: User
   name: ${PROJECT_USER}

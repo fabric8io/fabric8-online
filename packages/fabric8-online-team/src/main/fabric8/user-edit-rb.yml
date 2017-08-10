@@ -1,8 +1,8 @@
- metadata:
-   name: user-edit
-   namespace: ${PROJECT_NAME}
- roleRef:
-   name: edit
+metadata:
+  name: user-edit
+  namespace: ${PROJECT_NAME}
+roleRef:
+  name: edit
 subjects:
 - kind: User
   name: ${PROJECT_USER}

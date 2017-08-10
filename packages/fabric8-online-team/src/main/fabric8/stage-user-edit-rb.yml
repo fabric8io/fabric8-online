@@ -1,10 +1,8 @@
-apiVersion: v1
-kind: RoleBinding
 metadata:
-  name: useradmin
+  name: user-edit
   namespace: ${PROJECT_NAME}-stage
 roleRef:
-  name: admin
+  name: edit
 subjects:
 - kind: User
   name: ${PROJECT_USER}
