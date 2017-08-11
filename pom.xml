@@ -70,7 +70,7 @@
   </scm>
 
   <properties>
-    <che-server.version>530aa44-fabric8-eed5b7e</che-server.version>
+    <che-server.version>530aa44-fabric8-f94598b</che-server.version>
     <configmapcontroller.version>2.3.7</configmapcontroller.version>
     <fabric8.version>2.2.157</fabric8.version>
     <fabric8.console.version>2.2.199</fabric8.console.version>
