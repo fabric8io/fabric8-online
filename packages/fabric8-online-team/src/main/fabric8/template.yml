@@ -8,3 +8,4 @@ parameters:
   value: system:admin
 - name: PROJECT_DISPLAYNAME
 - name: PROJECT_DESCRIPTION
+- name: EXTERNAL_DOCKER_REGISTRY_URL
