@@ -5,6 +5,9 @@ metadata:
   annotations:
     fabric8.io/target-platform: "kubernetes"
 data:
+  # placeholder to set an external docker registry
+  external-docker-registry-url: ${EXTERNAL_DOCKER_REGISTRY_URL}
+
   # specify job names to the pipeline kind such as:
   # - foo: CD
   job-name-to-kind:
