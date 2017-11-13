@@ -34,6 +34,8 @@ spec:
           value: ${FABRIC8_FORGE_API_URL}
         - name: "FABRIC8_SSO_API_URL"
           value: ${FABRIC8_SSO_API_URL}
+        - name: "FABRIC8_AUTH_API_URL"
+          value: ${FABRIC8_AUTH_API_URL}
         - name: "OPENSHIFT_CONSOLE_URL"
           value: ${OPENSHIFT_CONSOLE_URL}
         image: "${fabric8-ui.image.name}:${fabric8-ui.version}"
