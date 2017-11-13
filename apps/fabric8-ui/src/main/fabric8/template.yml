@@ -31,3 +31,5 @@ parameters:
   value: https://forge.api.prod-preview.openshift.io
 - name: FABRIC8_SSO_API_URL
   value: https://sso.prod-preview.openshift.io/
+- name: FABRIC8_AUTH_API_URL
+  value: https://auth.prod-preview.openshift.io/api/
